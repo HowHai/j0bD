@@ -1,0 +1,56 @@
+@import 'bootstrap';
+
+@import url(http://fonts.googleapis.com/css?family=Lato:100);
+
+.jumbotron {
+  background: none;
+  text-align: center;
+  
+}
+
+.panel-heading {
+  text-align: center;
+}
+
+.panel-body {
+  text-align: left;
+}
+
+.empty-slide-div {
+  margin-right: -2000px;
+}
+
+#signup-slide {
+  position: relative;
+  top: -219px;
+}
+
+.panel-body .panel-title {
+  margin-top: 5px;
+}
+
+#taskr-intro-first{
+  height:900px;
+}
+
+#taskr-intro-second{
+  height:900px;
+  background-color: #178FE1;
+  color: white; 
+}
+
+#taskr-intro-third{
+  height:900px;
+  background-color: #3CDC18;
+  color: white;
+}
+
+#taskr-intro-fourth{
+  height:900px;
+  background-color: #fac600;
+  color: white;
+}
+
+#taskr-intro-last{
+  height:450px;
+}
