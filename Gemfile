@@ -5,6 +5,7 @@ gem 'rails', '4.0.2'
 
 group :development, :test do
   gem "pry-rails"
+  gem 'pry-nav'
   gem "rspec-rails"
 end
 

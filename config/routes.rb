@@ -1,7 +1,9 @@
 J0bD::Application.routes.draw do
-
+  get "employees/update"
+  get "employees/new"
   get "page/landing_page"
   root 'page#landing_page'
+  post 'employees/create' => 'employees#create'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
