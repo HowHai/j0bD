@@ -12,4 +12,13 @@ describe GithubReposController do
     end
   end
 
+  describe "GET 'show'" do
+    it "returns http success" do
+      GithubRepo.should_receive(:find).with('101').and_return("A repo was found")
+      get 'show', {id: 101}
+      expect(assigns(:github_repo)).to eq("A repo was found")
+      response.should be_success
+    end
+  end
+
 end
