@@ -1,4 +1,5 @@
 J0bD::Application.routes.draw do
+  resources :github_repos, only: [:index, :show]
   get "employees/update"
   get "employees/new"
   get "page/landing_page"
