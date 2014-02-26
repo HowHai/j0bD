@@ -1,14 +1,11 @@
 J0bD::Application.routes.draw do
-<<<<<<< HEAD
   resources :github_repos, only: [:index, :show]
-=======
   get 'auth/:provider/callback', to: 'github_accounts#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'github_accounts#destroy', as: 'signout'
 
   resources :github_accounts, only: [:create, :destroy]
 
->>>>>>> 3f17d85ae30dea8649ac0a92579fc2d05da5177c
   get "employees/update"
   get "employees/new"
   get "page/landing_page"
