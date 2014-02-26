@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140226073354) do
+ActiveRecord::Schema.define(version: 20140226231232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,24 @@ ActiveRecord::Schema.define(version: 20140226073354) do
     t.integer  "github_account_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.integer  "Ruby"
+    t.integer  "CSS"
+    t.integer  "JavaScript"
+    t.integer  "CoffeeScript"
+    t.integer  "PHP"
+    t.integer  "Java"
+    t.integer  "Python"
+    t.integer  "C"
+    t.integer  "Shell"
+    t.integer  "Perl"
+    t.integer  "VimL"
+    t.integer  "Scala"
+    t.integer  "Go"
+    t.integer  "Prolog"
+    t.integer  "Clojure"
+    t.integer  "Haskell"
+    t.integer  "Lua"
   end
 
   add_index "github_repos", ["github_account_id"], name: "index_github_repos_on_github_account_id", using: :btree
