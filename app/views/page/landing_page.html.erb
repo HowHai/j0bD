@@ -6,6 +6,13 @@
       <p><%= link_to "Sign Up", '#signup', :class => "btn btn-primary btn-lg", :id => 'signup-slide-btn' %></p>
     </div>
 
+    <!-- Sign in with Github -->
+    <% if current_user %>
+      Hello <%= current_user.username %>!
+    <% else %>
+      <div id="github"><%= link_to "Sign in with Github", "/auth/github" %></div>
+    <% end %>
+
     <div class="empty-slide-div"></div>
   </div>
 </div>

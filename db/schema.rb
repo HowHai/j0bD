@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140226020755) do
+ActiveRecord::Schema.define(version: 20140226073354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,10 @@ ActiveRecord::Schema.define(version: 20140226020755) do
     t.integer  "employee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "username"
+    t.string   "oauth_token"
   end
 
   add_index "github_accounts", ["employee_id"], name: "index_github_accounts_on_employee_id", using: :btree
