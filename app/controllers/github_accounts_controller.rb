@@ -28,6 +28,9 @@ class GithubAccountsController < ApplicationController
         merged_repo = repo.merge(github_account_id: github_user.id)
         GithubRepo.create(merged_repo)
       end
+    else
+      # Store session when @employee is found
+      session[:github_id] = github_user.id
     end
 
     redirect_to root_path

@@ -1,3 +1,30 @@
 // Place all the styles related to the Employees controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+table {
+  width: 700px;
+  border: 1px solid black;
+  text-align: center;
+  font-size: 14px;
+
+  th {
+    margin: 5px;
+    border: 1px solid black;
+    width: 20px;
+    font-weight: bold;
+  }
+
+  tr {
+    margin: 5px;
+    border: 1px solid black;
+    width: 20px;
+
+    td {
+      border: 1px solid black;
+      width: 10px;
+      padding: 3px;
+    }
+  }
+
+}

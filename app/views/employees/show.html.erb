@@ -1,0 +1,30 @@
+
+Hello <%= current_user.username %>!
+<%= link_to "Log out", "/signout", method: :delete %> <br />
+<%= @employee.github_account.username %>'s Repositories
+
+  <table>
+    <thead>
+      <th>Name</th>
+      <th>Ruby</th>
+      <th>JavaScript</th>
+      <th>CoffeeScript</th>
+      <th>CSS</th>
+      <th>PHP</th>
+      <th>Created_at</th>
+      <th>Updated_at</th>
+    </thead>
+
+    <% @employee.github_account.github_repos.each do |repo| %>
+      <tr>
+        <td><%= repo.name %></td>
+        <td><%= repo.Ruby %></td>
+        <td><%= repo.JavaScript %></td>
+        <td><%= repo.CoffeeScript %></td>
+        <td><%= repo.CSS %></td>
+        <td><%= repo.PHP %></td>
+        <td><%= repo.created_at.to_formatted_s(:long) %></td>
+        <td><%= repo.updated_at.to_formatted_s(:long) %></td>
+      </tr>
+    <% end %>
+  </table>

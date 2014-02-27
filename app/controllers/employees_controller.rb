@@ -11,4 +11,8 @@ class EmployeesController < ApplicationController
     @employee = Employee.new
     redirect_to "/"
   end
+
+  def show
+      @employee = Employee.find(current_user.employee_id)
+  end
 end
