@@ -3,10 +3,16 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  helper_method :current_user
+  helper_method :current_user, :current_employee
 
+  # Need to change this or remove... confusing
   def current_user
     @current_user ||= GithubAccount.find(session[:github_id]) if session[:github_id]
+  end
+
+  # Hacky way... change this later
+  def current_employee
+    @curent_user = Employee.find_by(git_account: current_user.username)
   end
 
   # Get all languages data in each repo of a github_user
@@ -23,5 +29,15 @@ class ApplicationController < ActionController::Base
       allRepos.push(repoHash.symbolize_keys!)
     end
     allRepos
+  end
+
+  # Get StackOverflow user's basic info
+  def get_stack_user_info(user_id)
+    user_info = HTTParty.get("https://api.stackexchange.com/2.2/users/" + user_id + "?order=desc&sort=reputation&site=stackoverflow&filter=!406FePY_tk75WKBzx&key=d9Fe13Jxvcb)WMzdPi8t7A((")
+
+    user_info = user_info["items"][0]
+    total_badges = user_info["badge_counts"].values.sum
+    stack_info = {id: user_id, reputation: user_info["reputation"], age: user_info["age"].to_i, badge_counts: total_badges}
+    stack_info
   end
 end

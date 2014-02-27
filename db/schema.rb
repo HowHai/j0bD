@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140226231232) do
+ActiveRecord::Schema.define(version: 20140227010613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,9 @@ ActiveRecord::Schema.define(version: 20140226231232) do
     t.integer  "employee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "reputation"
+    t.integer  "age"
+    t.integer  "badge_counts"
   end
 
   add_index "stack_overflow_accounts", ["employee_id"], name: "index_stack_overflow_accounts_on_employee_id", using: :btree
@@ -73,6 +76,11 @@ ActiveRecord::Schema.define(version: 20140226231232) do
     t.integer  "stack_overflow_account_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "top_tag_name"
+    t.integer  "question_score"
+    t.integer  "question_count"
+    t.integer  "answer_score"
+    t.integer  "answer_count"
   end
 
   add_index "stack_tags", ["stack_overflow_account_id"], name: "index_stack_tags_on_stack_overflow_account_id", using: :btree

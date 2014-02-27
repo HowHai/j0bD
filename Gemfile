@@ -6,6 +6,8 @@ gem 'rails', '4.0.2'
 gem 'omniauth-github'
 gem 'github_api'
 gem 'httparty'
+# Use this if current httparty does not work
+# gem 'httparty', '0.11.0'
 
 group :development, :test do
   gem "pry-rails"
