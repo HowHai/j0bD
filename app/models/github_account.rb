@@ -1,5 +1,6 @@
 class GithubAccount < ActiveRecord::Base
   belongs_to :employee
+  has_many :github_repos
 
   def self.create_with_omniauth(auth)
     create! do |user|

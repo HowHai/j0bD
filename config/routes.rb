@@ -1,5 +1,5 @@
 J0bD::Application.routes.draw do
-  resources :github_repos, only: [:index, :show]
+  resources :github_repos
   get 'auth/:provider/callback', to: 'github_accounts#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'github_accounts#destroy', as: 'signout'
