@@ -1,31 +1,37 @@
 <div id="show-page">
-Hello <%= current_user.username %>!
-<%= link_to "Log out", "/signout", method: :delete %> <br />
+  Hello <%= current_user.username %>!
+  <%= link_to "Log out", "/signout", method: :delete %> <br />
 
-<h2>Add accounts</h2>
-<!-- Allow employee to add stackoveflow account if not connected to profile -->
-<% if current_employee.stack_overflow_account %>
-  Stackoverflow: Connected <br />
-<% else %>
-  <!-- Enter StackOverflow's ID to save info to database -->
-  <%= form_tag "/stack_tags", method: 'POST' do %>
-    <%= text_field_tag :stackoverflow_id, params[:stackoverflow_id] %>
-    <%= submit_tag "Add StackOverflow" %>
-  <% end %>
-<% end %>
 
-  <!-- LinkedIn -->
-  <%= form_tag "#", method: 'POST' do %>
-    <%= text_field_tag :doesnt_work, params[:stackoverflow_id] %>
-    <%= submit_tag "Add LinkedIn" %>
-  <% end %>
+  <div id="add-accounts">
+    <h2>Add accounts</h2>
+    <!-- Allow employee to add stackoveflow account if not connected to profile -->
+    <% if current_employee.stack_overflow_account %>
+      <strong>Stackoverflow: Connected</strong> <br />
+    <% else %>
+      <!-- Enter StackOverflow's ID to save info to database -->
+      <%= form_tag "/stack_tags", method: 'POST' do %>
+        <%= text_field_tag :stackoverflow_id, params[:stackoverflow_id] %>
+        <%= submit_tag "Add StackOverflow" %>
+      <% end %>
+    <% end %>
 
-  <!-- Dribble -->
-  <%= form_tag "#", method: 'POST' do %>
-    <%= text_field_tag :doesnt_work2, params[:stackoverflow_id] %>
-    <%= submit_tag "Add Dribble" %>
-  <% end %>
+      <!-- LinkedIn -->
+      <%= form_tag "#", method: 'POST' do %>
+        <%= text_field_tag :doesnt_work, params[:stackoverflow_id] %>
+        <%= submit_tag "Add LinkedIn" %>
+      <% end %>
 
+    <% if current_employee.dribbble %>
+      <strong>Dribbble: Connected</strong> <br />
+    <% else %>
+      <!-- Dribble -->
+      <%= form_tag "/dribbbles", method: 'POST' do %>
+        <%= text_field_tag :dribbble_username, params[:dribbble_username] %>
+        <%= submit_tag "Add Dribble" %>
+      <% end %>
+    <% end %>
+  </div>
   <!-- Show all Github repositories -->
   <%= @employee.github_account.username %>'s Repositories
   <table>

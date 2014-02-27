@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227010613) do
+ActiveRecord::Schema.define(version: 20140227071322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dribbbles", force: true do |t|
+    t.integer  "employee_id"
+    t.string   "username"
+    t.integer  "shots_count"
+    t.integer  "likes_count"
+    t.integer  "likes_received_count"
+    t.integer  "rebounds_count"
+    t.string   "rebounds_received_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "dribbbles", ["employee_id"], name: "index_dribbbles_on_employee_id", using: :btree
 
   create_table "employees", force: true do |t|
     t.datetime "created_at"

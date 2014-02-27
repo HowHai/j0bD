@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   # Hacky way... change this later
   def current_employee
-    @curent_user = Employee.find_by(git_account: current_user.username)
+    @current_employee = Employee.find_by(git_account: current_user.username)
   end
 
   # Get all languages data in each repo of a github_user

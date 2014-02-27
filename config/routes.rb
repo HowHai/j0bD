@@ -2,6 +2,7 @@ J0bD::Application.routes.draw do
   resources :github_repos
   resources :employees
   resources :stack_tags
+  resources :dribbbles, only: [:create]
 
   get 'auth/:provider/callback', to: 'github_accounts#create'
   get 'auth/failure', to: redirect('/')

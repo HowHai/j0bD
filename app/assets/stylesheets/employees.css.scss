@@ -7,6 +7,14 @@
   margin: 0 auto;
   color: black;
 
+  #add-accounts {
+    width: 300px;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 0 auto;
+    background-color: lighten(blue, 30%);
+  }
+
   table {
     width: 700px;
     border: 1px solid black;
