@@ -6,6 +6,7 @@
   <div id="add-accounts">
     <h2>Add accounts</h2>
     <!-- Allow employee to add stackoveflow account if not connected to profile -->
+    <!-- TODO Refractor this by creating rails helper -->
     <% if current_employee.stack_overflow_account %>
       <strong>Stackoverflow: Connected</strong> <br />
     <% else %>
@@ -32,6 +33,7 @@
       <% end %>
     <% end %>
   </div>
+
   <!-- Show all Github repositories -->
   <%= @employee.github_account.username %>'s Repositories
   <table>
@@ -84,11 +86,34 @@
       <% end %>
     </table>
   <% end %>
+
+
+  <!-- Show employee's Dribbble data if they have an account connected -->
+  <% if current_employee.dribbble %>
+  <h2>Dribbble Data</h2>
+    <table>
+      <thead>
+        <th>Shots Count</th>
+        <th>Likes Count</th>
+        <th>Likes Received Count</th>
+        <th>Rebounds Count</th>
+        <th>Rebounds Received Count</th>
+      </thead>
+
+        <tr>
+          <td><%= current_employee.dribbble.shots_count %></td>
+          <td><%= current_employee.dribbble.likes_count %></td>
+          <td><%= current_employee.dribbble.likes_received_count %></td>
+          <td><%= current_employee.dribbble.rebounds_count %></td>
+          <td><%= current_employee.dribbble.rebounds_received_count %></td>
+        </tr>
+    </table>
+  <% end %>
 </div>
 
 <script>
   // Delete this crap later
-  $('#doesnt_work, #doesnt_work2').click(function() {
+  $('#doesnt_work').click(function() {
     alert("Does not work... GO AWAY!!!")
   })
 </script>
