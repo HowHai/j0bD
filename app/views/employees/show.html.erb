@@ -1,3 +1,4 @@
+<div id="show-page">
 Hello <%= current_user.username %>!
 <%= link_to "Log out", "/signout", method: :delete %> <br />
 
@@ -40,3 +41,28 @@ Hello <%= current_user.username %>!
       </tr>
     <% end %>
   </table>
+
+  <h2>StackOverflow Data</h2>
+  <% if current_employee.stack_overflow_account %>
+    <h2>ID: <%= current_employee.stack_overflow_account.id %> | Rep: <%=current_employee.stack_overflow_account.reputation %> | Badges: <%= current_employee.stack_overflow_account.badge_counts %></h2>
+    <table>
+      <thead>
+        <th>Tag Name</th>
+        <th>Answer Count</th>
+        <th>Answer Score</th>
+        <th>Question Count</th>
+        <th>Question Score</th>
+      </thead>
+
+      <% current_employee.stack_overflow_account.stack_tags.each do |tag| %>
+        <tr>
+          <td><%= tag.top_tag_name %></td>
+          <td><%= tag.answer_count %></td>
+          <td><%= tag.answer_score %></td>
+          <td><%= tag.question_count %></td>
+          <td><%= tag.question_score %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>

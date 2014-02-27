@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Employee.destroy_all
+StackOverflowAccount.destroy_all
+StackTag.destroy_all
+GithubAccount.destroy_all
+GithubRepo.destroy_all
