@@ -14,8 +14,20 @@ Hello <%= current_user.username %>!
   <% end %>
 <% end %>
 
-<%= @employee.github_account.username %>'s Repositories
+  <!-- LinkedIn -->
+  <%= form_tag "#", method: 'POST' do %>
+    <%= text_field_tag :doesnt_work, params[:stackoverflow_id] %>
+    <%= submit_tag "Add LinkedIn" %>
+  <% end %>
 
+  <!-- Dribble -->
+  <%= form_tag "#", method: 'POST' do %>
+    <%= text_field_tag :doesnt_work2, params[:stackoverflow_id] %>
+    <%= submit_tag "Add Dribble" %>
+  <% end %>
+
+  <!-- Show all Github repositories -->
+  <%= @employee.github_account.username %>'s Repositories
   <table>
     <thead>
       <th>Name</th>
@@ -42,8 +54,9 @@ Hello <%= current_user.username %>!
     <% end %>
   </table>
 
-  <h2>StackOverflow Data</h2>
+  <!-- Show employee's stackoverflow data if they have an account connected -->
   <% if current_employee.stack_overflow_account %>
+  <h2>StackOverflow Data</h2>
     <h2>ID: <%= current_employee.stack_overflow_account.id %> | Rep: <%=current_employee.stack_overflow_account.reputation %> | Badges: <%= current_employee.stack_overflow_account.badge_counts %></h2>
     <table>
       <thead>
@@ -66,3 +79,10 @@ Hello <%= current_user.username %>!
     </table>
   <% end %>
 </div>
+
+<script>
+  // Delete this crap later
+  $('#doesnt_work, #doesnt_work2').click(function() {
+    alert("Does not work... GO AWAY!!!")
+  })
+</script>
