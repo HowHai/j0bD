@@ -5,6 +5,7 @@
 
   <div id="add-accounts">
     <h2>Add accounts</h2>
+    <strong>Github: Connected</strong> <br />
     <!-- Allow employee to add stackoveflow account if not connected to profile -->
     <!-- TODO Refractor this by creating rails helper -->
     <% if current_employee.stack_overflow_account %>
@@ -29,7 +30,7 @@
       <!-- Dribble -->
       <%= form_tag "/dribbbles", method: 'POST' do %>
         <%= text_field_tag :dribbble_username, params[:dribbble_username] %>
-        <%= submit_tag "Add Dribble" %>
+        <%= submit_tag "Add Dribbble" %>
       <% end %>
     <% end %>
   </div>
