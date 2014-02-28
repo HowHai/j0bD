@@ -1,43 +1,39 @@
+<!-- MODAL -->
+<%= render partial: 'layouts/signup_modal' %>
+<!-- SIGN UP BUTTON -->
 <div id="taskr-intro-first">
   <div class="jumbotron">
     <div class="signup-form-slide">
       <h1>J<span class="j0bd_title">0</span>bd.</h1>
-      <p>The number one to-do list app in the world. <br />Try it for free below:</p>
-      <p><%= link_to "Sign Up", '#signup', :class => "btn btn-primary btn-lg", :id => 'signup-slide-btn' %></p>
+      <p>Where startups find coders and coders find work.<br /></p>
+      <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Sign Up</button>
     </div>
-
-    <!-- Sign in with Github -->
-    <% if current_user %>
-      Hello <%= current_user.username %>!
-      <%= link_to "Log out", "/signout", method: :delete %>
-    <% else %>
-      <div id="github"><%= link_to "Sign in with Github", "/auth/github" %></div>
-    <% end %>
-
-    <div class="empty-slide-div"></div>
   </div>
 </div>
 
 <div id="taskr-intro-second" name="anchorName2">
+<div id="down-arrow"></div>
   <div class="jumbotron">
     <div class="signup-form">
-      <h1>Coders | Startups</h1>
-      <p>Coders - Where do you fit?</p>
-      <p>Startups - Who fits with You? </p>
+      <h1>Coders + Startups</h1>
+      <p>Look no further.</p>
+      <%=image_tag("j0bd-profile.png", alt: "j0bdprofile", :size => "400x400")%>
     </div>
   </div>
 </div>
 
 <div id="taskr-intro-third">
+<!-- <div id="down-arrow-green"></div> -->
   <div class="jumbotron">
     <div class="signup-form">
-      <h1>Fit the bits.</h1>
+      <h1>Fitting the bits.</h1>
       <p>Match need sets with skill sets.</p>
     </div>
   </div>
 </div>
 
 <div id="taskr-intro-fourth">
+<!-- <div id="down-arrow-orange"></div> -->
   <div class="jumbotron">
     <div class="signup-form">
       <h1>Automated Profile Creation</h1>
@@ -50,8 +46,7 @@
   <div class="jumbotron">
     <div class="signup-form">
       <h1>Get Started</h1>
-      <p><%= link_to "Coder Sign Up", 'employees/new', :class => "btn btn-primary btn-lg", :id => 'signup-bottom-btn' %></p>
-      <p><%= link_to "Startup Sign Up", 'employers/new', :class => "btn btn-primary btn-lg", :id => 'signup-bottom-btn' %></p>
+      <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Sign Up</button>
 
     </div>
   </div>
