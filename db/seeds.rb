@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Employee.destroy_all
+Employer.destroy_all
 StackOverflowAccount.destroy_all
 StackTag.destroy_all
 GithubAccount.destroy_all

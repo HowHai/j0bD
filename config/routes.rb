@@ -7,6 +7,7 @@ J0bD::Application.routes.draw do
   # LinkedIn
   get 'auth/linkedin/callback', to: 'employers#create'
   resources :employers, except: [:create]
+  delete '/employers' => 'employers#destroy'
 
   # Github
   get 'auth/:provider/callback', to: 'github_accounts#create'
