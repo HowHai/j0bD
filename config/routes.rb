@@ -4,6 +4,12 @@ J0bD::Application.routes.draw do
   resources :stack_tags
   resources :dribbbles, only: [:create]
 
+  # LinkedIn
+  get 'auth/linkedin/callback', to: 'employers#create'
+  resources :employers, except: [:create]
+  delete '/employers' => 'employers#destroy'
+
+  # Github
   get 'auth/:provider/callback', to: 'github_accounts#create'
   get 'auth/failure', to: redirect('/')
   delete 'signout', to: 'github_accounts#destroy', as: 'signout'

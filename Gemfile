@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
+gem 'omniauth-linkedin-oauth2'
+
 gem 'omniauth-github'
 gem 'github_api'
 gem 'httparty'
