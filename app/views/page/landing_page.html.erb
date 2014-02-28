@@ -14,7 +14,13 @@
       <div id="github"><%= link_to "Sign in with Github", "/auth/github" %></div>
     <% end %>
 
+    <!-- Sign in with LinkedIn -->
+    <% if current_employer %>
+      Hello <%= current_employer.name %> <br />
+      <%= link_to "Log out", "/employers", method: :delete %>
+    <% else %>
     <div id="linkedin"><%= link_to "Sign in with LinkedIn", "/auth/linkedin" %></div>
+    <% end %>
 
     <div class="empty-slide-div"></div>
   </div>

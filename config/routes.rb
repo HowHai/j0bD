@@ -5,7 +5,8 @@ J0bD::Application.routes.draw do
   resources :dribbbles, only: [:create]
 
   # LinkedIn
-  get 'auth/linkedin/callback', to: 'page#landing_page'
+  get 'auth/linkedin/callback', to: 'employers#create'
+  delete '/employers' => 'employers#destroy'
   # Github
   get 'auth/:provider/callback', to: 'github_accounts#create'
   get 'auth/failure', to: redirect('/')
