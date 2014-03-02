@@ -20,7 +20,7 @@ class GithubAccountsController < ApplicationController
       # Connect GithubAccount to Employee
       github_user.update(employee_id: @employee.id)
 
-      session[:github_id] = github_user.id
+      session[:user_id] = @employee.id
 
       # Create repositories
       allRepos = repos_languages_data(github_user.username)
@@ -30,14 +30,14 @@ class GithubAccountsController < ApplicationController
       end
     else
       # Store session when @employee is found
-      session[:github_id] = github_user.id
+      session[:user_id] = @employee.id
     end
 
     redirect_to root_path
   end
 
   def destroy
-    session[:github_id] = nil
+    session[:user_id] = nil
     redirect_to root_path
   end
 end

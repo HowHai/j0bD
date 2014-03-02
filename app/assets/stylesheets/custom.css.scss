@@ -6,7 +6,7 @@
 .jumbotron {
   background: none;
   text-align: center;
-  
+
 }
 
 .panel-heading {
@@ -37,7 +37,7 @@
 #taskr-intro-second{
   height:900px;
   background-color: #178FE1;
-  color: white; 
+  color: white;
 }
 
 #taskr-intro-third{
@@ -54,4 +54,34 @@
 
 #taskr-intro-last{
   height:450px;
+}
+
+
+
+// Table
+
+table {
+  width: 700px;
+  border: 1px solid black;
+  text-align: center;
+  font-size: 14px;
+
+  th {
+    margin: 5px;
+    border: 1px solid black;
+    width: 20px;
+    font-weight: bold;
+  }
+
+  tr {
+    margin: 5px;
+    border: 1px solid black;
+    width: 20px;
+
+    td {
+      border: 1px solid black;
+      width: 10px;
+      padding: 3px;
+    }
+  }
 }

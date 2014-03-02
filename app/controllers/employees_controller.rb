@@ -17,6 +17,6 @@ class EmployeesController < ApplicationController
   end
 
   def show
-      @employee = Employee.find(current_user.employee_id)
+      @employee = Employee.find(current_employee.id)
   end
 end

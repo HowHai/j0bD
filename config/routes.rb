@@ -3,9 +3,13 @@ J0bD::Application.routes.draw do
   resources :employees
   resources :stack_tags
   resources :dribbbles, only: [:create]
+  resources :linkedins, only: [:create, :show]
 
   # LinkedIn
-  get 'auth/linkedin/callback', to: 'employers#create'
+  get 'auth/linkedin/callback', to: 'linkedins#create'
+
+  # uncommect this after LinkedIn test
+  # get 'auth/linkedin/callback', to: 'employers#create'
   resources :employers, except: [:create]
   delete '/employers' => 'employers#destroy'
 

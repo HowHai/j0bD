@@ -13,3 +13,4 @@ StackTag.destroy_all
 GithubAccount.destroy_all
 GithubRepo.destroy_all
 Dribbble.destroy_all
+LinkedIn.destroy_all

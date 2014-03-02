@@ -7,8 +7,7 @@
     </div>
 
     <!-- Sign in with Github -->
-    <% if current_user %>
-      Hello <%= current_user.username %>!
+    <% if current_employee %>
       <%= link_to "Log out", "/signout", method: :delete %>
     <% else %>
       <div id="github">Employee: <%= link_to "Sign up with Github", "/auth/github" %></div>

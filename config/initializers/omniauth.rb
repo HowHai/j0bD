@@ -7,7 +7,10 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :linkedin, "754ewh1ftt3ajs", "q0ezwYKjBOdPPgAQ",
   {
     scope: "r_fullprofile r_emailaddress r_network r_contactinfo",
-    fields: ["positions", "summary"],
+    fields:
+    [
+      'first-name', 'headline', 'industry'
+    ],
     client_options:
     {
       ssl:
