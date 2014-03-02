@@ -15,3 +15,4 @@ GithubRepo.destroy_all
 Dribbble.destroy_all
 LinkedIn.destroy_all
 Position.destroy_all
+Education.destroy_all

@@ -3,6 +3,7 @@
 
 <% if @linkedin %>
   <%= "#{@linkedin.first_name} | #{@linkedin.headline} | #{@linkedin.industry}" %>
+
   <h2>Positions</h2>
   <table>
     <thead>
@@ -20,6 +21,23 @@
       <td><%= position.is_current %></td>
       <td><%= position.start_date %></td>
       <td><%= position.end_date %></td>
+    </tr>
+  <% end %>
+  </table>
+
+  <h2>Education</h2>
+  <table>
+    <thead>
+      <th>Degree</th>
+      <th>Field of Study</th>
+      <th>School Name</th>
+    </thead>
+
+  <% @linkedin.educations.each do |education| %>
+    <tr>
+      <td><%= education.degree %></td>
+      <td><%= education.field_of_study %></td>
+      <td><%= education.school_name %></td>
     </tr>
   <% end %>
   </table>
