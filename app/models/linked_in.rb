@@ -1,5 +1,5 @@
 class LinkedIn < ActiveRecord::Base
-
+  has_many :positions
 
   # Connect user to their linkedin account and create new LinkedIn
   def self.connect_to_linkedin(auth)

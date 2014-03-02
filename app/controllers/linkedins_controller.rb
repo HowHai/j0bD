@@ -4,6 +4,7 @@ class LinkedinsController < ApplicationController
     binding.pry
     @linkedin = LinkedIn.connect_to_linkedin(auth)
     if @linkedin.persisted?
+      Position.create_positions(@linkedin, auth)
       redirect_to '/linkedins/show'
     end
   end

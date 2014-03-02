@@ -9,7 +9,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     scope: "r_fullprofile r_emailaddress r_network r_contactinfo",
     fields:
     [
-      'first-name', 'headline', 'industry'
+      'first-name', 'headline', 'industry', 'positions'
     ],
     client_options:
     {

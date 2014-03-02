@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140302022908) do
+ActiveRecord::Schema.define(version: 20140302092136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,19 @@ ActiveRecord::Schema.define(version: 20140302022908) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "positions", force: true do |t|
+    t.string   "title"
+    t.text     "summary"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.boolean  "is_current"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "linked_in_id"
+  end
+
+  add_index "positions", ["linked_in_id"], name: "index_positions_on_linked_in_id", using: :btree
 
   create_table "stack_overflow_accounts", force: true do |t|
     t.integer  "employee_id"

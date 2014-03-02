@@ -14,3 +14,4 @@ GithubAccount.destroy_all
 GithubRepo.destroy_all
 Dribbble.destroy_all
 LinkedIn.destroy_all
+Position.destroy_all
