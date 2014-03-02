@@ -22,6 +22,8 @@
       <%= form_tag "#", method: 'POST' do %>
         <%= text_field_tag :doesnt_work, params[:stackoverflow_id] %>
         <%= submit_tag "Add LinkedIn" %>
+
+      <%= link_to "Sign up with LinkedIn", "/auth/linkedin" %>
       <% end %>
 
     <% if current_employee.dribbble %>
