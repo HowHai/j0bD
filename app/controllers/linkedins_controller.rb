@@ -1,7 +1,7 @@
 class LinkedinsController < ApplicationController
   def create
     auth = env["omniauth.auth"]
-    binding.pry
+    # binding.pry
     @linkedin = LinkedIn.connect_to_linkedin(auth)
     if @linkedin.persisted?
       Position.create_positions(@linkedin, auth)

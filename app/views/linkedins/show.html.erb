@@ -9,6 +9,8 @@
       <th>Title</th>
       <th>Summary</th>
       <th>Is Current</th>
+      <th>Start Date</th>
+      <th>End Date</th>
     </thead>
 
   <% @linkedin.positions.each do |position| %>
@@ -16,6 +18,8 @@
       <td><%= position.title %></td>
       <td><%= position.summary %></td>
       <td><%= position.is_current %></td>
+      <td><%= position.start_date %></td>
+      <td><%= position.end_date %></td>
     </tr>
   <% end %>
   </table>
