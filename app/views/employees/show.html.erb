@@ -112,63 +112,65 @@
     </table>
   <% end %>
 
-  <h2>LinkedIn Data</h2>
-  <h2>General Information</h2>
-  <table>
-    <thead>
-      <th>Name</th>
-      <th>Headline</th>
-      <th>Industry</th>
-      <th>Interests</th>
-      <th>Spoken Languages</th>
-      <th>Skills</th>
-    </thead>
+  <% if current_employee.linked_in %>
+    <h2>LinkedIn Data</h2>
+    <h2>General Information</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Headline</th>
+        <th>Industry</th>
+        <th>Interests</th>
+        <th>Spoken Languages</th>
+        <th>Skills</th>
+      </thead>
 
-    <tr>
-      <td><%= current_employee.linked_in.first_name %></td>
-      <td><%= current_employee.linked_in.headline %></td>
-      <td><%= current_employee.linked_in.industry %></td>
-      <td><%= current_employee.linked_in.interests %></td>
-      <td><%= current_employee.linked_in.languages %></td>
-      <td><%= current_employee.linked_in.skills %></td>
-    </tr>
-  </table>
+      <tr>
+        <td><%= current_employee.linked_in.first_name %></td>
+        <td><%= current_employee.linked_in.headline %></td>
+        <td><%= current_employee.linked_in.industry %></td>
+        <td><%= current_employee.linked_in.interests %></td>
+        <td><%= current_employee.linked_in.languages %></td>
+        <td><%= current_employee.linked_in.skills %></td>
+      </tr>
+    </table>
 
-  <h2>Positions</h2>
-  <table>
-    <thead>
-      <th>Title</th>
-      <th>Summary</th>
-      <th>Is Current</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-    </thead>
+    <h2>Positions</h2>
+    <table>
+      <thead>
+        <th>Title</th>
+        <th>Summary</th>
+        <th>Is Current</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+      </thead>
 
-  <% current_employee.linked_in.positions.each do |position| %>
-    <tr>
-      <td><%= position.title %></td>
-      <td><%= position.summary %></td>
-      <td><%= position.is_current %></td>
-      <td><%= position.start_date %></td>
-      <td><%= position.end_date %></td>
-    </tr>
+    <% current_employee.linked_in.positions.each do |position| %>
+      <tr>
+        <td><%= position.title %></td>
+        <td><%= position.summary %></td>
+        <td><%= position.is_current %></td>
+        <td><%= position.start_date %></td>
+        <td><%= position.end_date %></td>
+      </tr>
+    <% end %>
+    </table>
+
+    <h2>Education</h2>
+    <table>
+      <thead>
+        <th>Degree</th>
+        <th>Field of Study</th>
+        <th>School Name</th>
+      </thead>
+
+    <% current_employee.linked_in.educations.each do |education| %>
+      <tr>
+        <td><%= education.degree %></td>
+        <td><%= education.field_of_study %></td>
+        <td><%= education.school_name %></td>
+      </tr>
+    <% end %>
+    </table>
   <% end %>
-  </table>
-
-  <h2>Education</h2>
-  <table>
-    <thead>
-      <th>Degree</th>
-      <th>Field of Study</th>
-      <th>School Name</th>
-    </thead>
-
-  <% current_employee.linked_in.educations.each do |education| %>
-    <tr>
-      <td><%= education.degree %></td>
-      <td><%= education.field_of_study %></td>
-      <td><%= education.school_name %></td>
-    </tr>
-  <% end %>
-  </table>
 </div>
