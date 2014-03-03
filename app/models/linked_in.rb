@@ -1,10 +1,11 @@
 class LinkedIn < ActiveRecord::Base
   has_many :positions
   has_many :educations
+  belongs_to :employee
 
-  # Connect user to their linkedin account and create new LinkedIn
-  def self.connect_to_linkedin(auth)
-    user = self.where(provider: auth.provider, uid: auth.uid)[0]
+  # Connect employee to their linkedin account and create new LinkedIn
+  def self.connect_to_linkedin(auth, employee)
+    user = employee.linked_in
     if user
       return user
     else
@@ -22,7 +23,7 @@ class LinkedIn < ActiveRecord::Base
       end
       skills = skills.split.join(', ')
 
-      user = self.create(
+      user = employee.create_linked_in(
           first_name: auth.info.first_name,
           headline: auth.info.description,
           industry: auth.extra.raw_info.industry,

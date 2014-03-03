@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
 
   def current_employer
-    @current_employer = Employer.find(session[:employer_id]) if session[:employer_id]
+    @current_employer ||= Employer.find(session[:employer_id]) if session[:employer_id]
   end
 
   # Need to change this or remove... confusing
@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
   # Hacky way... change this later
   def current_employee
-    @current_employee = Employee.find_by(id: session[:user_id])
+    @current_employee ||= Employee.find_by(id: session[:user_id])
   end
 
   # Get all languages data in each repo of a github_user
