@@ -4,6 +4,28 @@
 <% if @linkedin %>
   <%= "#{@linkedin.first_name} | #{@linkedin.headline} | #{@linkedin.industry}" %>
 
+
+  <h2>General Information</h2>
+  <table>
+    <thead>
+      <th>Name</th>
+      <th>Headline</th>
+      <th>Industry</th>
+      <th>Interests</th>
+      <th>Spoken Languages</th>
+      <th>Skills</th>
+    </thead>
+
+    <tr>
+      <td><%= @linkedin.first_name %></td>
+      <td><%= @linkedin.headline %></td>
+      <td><%= @linkedin.industry %></td>
+      <td><%= @linkedin.interests %></td>
+      <td><%= @linkedin.languages %></td>
+      <td><%= @linkedin.skills %></td>
+    </tr>
+  </table>
+
   <h2>Positions</h2>
   <table>
     <thead>
