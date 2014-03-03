@@ -12,6 +12,8 @@ class EmployersController < ApplicationController
   end
 
   def show
+    # List all employees for now
+    @employees = Employee.all
   end
 
   def destroy

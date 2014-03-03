@@ -4,6 +4,7 @@ J0bD::Application.routes.draw do
   resources :stack_tags
   resources :dribbbles, only: [:create]
   resources :linkedins, only: [:create, :show]
+  resources :favorites, only: [:create]
 
   # LinkedIn
   get 'auth/linkedin/callback', to: 'linkedins#create'

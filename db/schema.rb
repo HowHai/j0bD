@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140303045246) do
+ActiveRecord::Schema.define(version: 20140303075059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20140303045246) do
     t.datetime "updated_at"
     t.string   "git_account"
     t.integer  "stack_overflow_account"
+    t.string   "name"
   end
 
   create_table "employers", force: true do |t|
@@ -59,6 +60,16 @@ ActiveRecord::Schema.define(version: 20140303045246) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "favorites", force: true do |t|
+    t.integer  "employee_id"
+    t.integer  "employer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "favorites", ["employee_id"], name: "index_favorites_on_employee_id", using: :btree
+  add_index "favorites", ["employer_id"], name: "index_favorites_on_employer_id", using: :btree
 
   create_table "github_accounts", force: true do |t|
     t.integer  "employee_id"

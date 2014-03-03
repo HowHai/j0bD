@@ -1,5 +1,7 @@
 class Employer < ActiveRecord::Base
   has_one :linked_in
+  has_many :favorites
+  has_many :favorite_employees, through: :favorites, source: :employee
 
   # Connect employer to their LinkedIn account
   def self.connect_to_linkedin(auth)
@@ -14,5 +16,9 @@ class Employer < ActiveRecord::Base
           email: auth.info.email
         )
     end
+  end
+
+  def add_favorite(employee)
+    self.favorites.create(employee_id: employee)
   end
 end

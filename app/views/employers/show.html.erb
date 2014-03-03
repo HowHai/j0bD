@@ -6,3 +6,34 @@ Welcome <%= current_employer.name %>
   <%= text_field_tag :search_candidate, params[:search_candidate], placeholder: "Search" %> <br>
   <%= submit_tag "Search" %>
 <% end %>
+
+<!-- Employer's favorite list -->
+<h2>Your favorites</h2>
+<table>
+  <thead>
+    <th>Name</th>
+  </thead>
+
+  <% current_employer.favorite_employees.each do |favorite| %>
+    <tr>
+      <td><%= favorite.name %></td>
+    </tr>
+  <% end %>
+</table>
+
+<!-- Display Employees -->
+
+<h2>List of Employees</h2>
+<table>
+  <thead>
+    <th>Name</th>
+    <th>Favorites</th>
+  </thead>
+
+  <% @employees.each do |employee| %>
+    <tr>
+      <td><%= employee.name %></td>
+      <td><%= link_to "Add employee", favorites_path(employee: employee.id), method: "post" %></td>
+    </tr>
+  <% end %>
+</table>

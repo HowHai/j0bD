@@ -16,3 +16,13 @@ Dribbble.destroy_all
 LinkedIn.destroy_all
 Position.destroy_all
 Education.destroy_all
+
+
+def random_name
+  %w[Elwanda Roff Trinh Manfredi Matilda Mazon Francisco Wendell Timika Garand Russ Harms Kathe Byron Alma Kott Alexis Westerfield Merilyn Blakeney Jasmin Bruns Ned Leiva Kristie Bartos Rueben Krupa Myung Reddington Regine Ferron Adrianne Gruner Aimee Prendergast Riley Paladino Maisha Farnsworth].sample
+end
+
+# Generate random employees
+15.times do
+  Employee.create(name: random_name)
+end
