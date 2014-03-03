@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140303035839) do
+ActiveRecord::Schema.define(version: 20140303045246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,9 +114,11 @@ ActiveRecord::Schema.define(version: 20140303035839) do
     t.text     "skills"
     t.string   "location"
     t.integer  "employee_id"
+    t.integer  "employer_id"
   end
 
   add_index "linked_ins", ["employee_id"], name: "index_linked_ins_on_employee_id", using: :btree
+  add_index "linked_ins", ["employer_id"], name: "index_linked_ins_on_employer_id", using: :btree
 
   create_table "positions", force: true do |t|
     t.string   "title"

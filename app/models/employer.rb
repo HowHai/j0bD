@@ -1,4 +1,5 @@
 class Employer < ActiveRecord::Base
+  has_one :linked_in
 
   # Connect employer to their LinkedIn account
   def self.connect_to_linkedin(auth)

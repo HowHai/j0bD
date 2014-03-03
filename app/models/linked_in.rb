@@ -2,6 +2,7 @@ class LinkedIn < ActiveRecord::Base
   has_many :positions
   has_many :educations
   belongs_to :employee
+  belongs_to :employer
 
   # Connect employee to their linkedin account and create new LinkedIn
   def self.connect_to_linkedin(auth, employee)
@@ -35,6 +36,27 @@ class LinkedIn < ActiveRecord::Base
           uid: auth.uid,
           email: auth.info.email
         )
+    end
+  end
+
+  # Create Employer account and connect to LinkedIn. This might be too messy, find another solution later.
+  def self.connect_employer(auth)
+    employer = Employer.where(provider: auth.provider, uid: auth.uid)[0]
+    if employer
+      return employer
+    else
+      employer = Employer.create(
+          name: auth.info.first_name,
+          provider: auth.provider,
+          uid: auth.uid,
+          email: auth.info.email
+        )
+
+      employer.create_linked_in(
+        provider: auth.provider,
+        uid: auth.uid
+        )
+      return employer
     end
   end
 end

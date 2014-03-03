@@ -11,6 +11,15 @@ class LinkedinsController < ApplicationController
         Education.create_educations(@linkedin, auth)
         redirect_to employee_path(current_employee.id)
       end
+    else
+      # Connect / Sign up employer
+      @employer = LinkedIn.connect_employer(auth)
+      if @employer.persisted?
+        session[:employer_id] = @employer.id
+        redirect_to @employer
+      else
+        # Do something to handle a failed log in / sign up for employer
+      end
     end
   end
 
