@@ -35,6 +35,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 # So that turbolinks works with application.js and jquery
 gem 'jquery-turbolinks'
