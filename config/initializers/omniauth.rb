@@ -10,7 +10,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     fields:
     [
       'first-name', 'headline', 'industry', 'positions', 'specialties', 'email-address', 'interests', 'languages', 'certifications', 'educations',
-      'skills', 'num-recommenders', 'recommendations-received', 'proposal-comments', 'associations', 'job-bookmarks', 'connections', 'location:(name)', 'summary'
+      'skills', 'num-recommenders', 'recommendations-received', 'proposal-comments', 'associations', 'job-bookmarks', 'connections', 'location:(name)', 'summary', 'public-profile-url'
     ],
     client_options:
     {

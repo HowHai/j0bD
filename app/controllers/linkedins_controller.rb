@@ -1,7 +1,7 @@
 class LinkedinsController < ApplicationController
   def create
     auth = env["omniauth.auth"]
-    # binding.pry
+    binding.pry
 
     # Link LinkedIn account to current_employee
     if current_employee
