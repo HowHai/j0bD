@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228045429) do
+ActiveRecord::Schema.define(version: 20140303075059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,11 +30,25 @@ ActiveRecord::Schema.define(version: 20140228045429) do
 
   add_index "dribbbles", ["employee_id"], name: "index_dribbbles_on_employee_id", using: :btree
 
+  create_table "educations", force: true do |t|
+    t.integer  "linked_in_id"
+    t.string   "degree"
+    t.date     "end_date"
+    t.date     "start_date"
+    t.string   "field_of_study"
+    t.string   "school_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "educations", ["linked_in_id"], name: "index_educations_on_linked_in_id", using: :btree
+
   create_table "employees", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "git_account"
     t.integer  "stack_overflow_account"
+    t.string   "name"
   end
 
   create_table "employers", force: true do |t|
@@ -46,6 +60,16 @@ ActiveRecord::Schema.define(version: 20140228045429) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "favorites", force: true do |t|
+    t.integer  "employee_id"
+    t.integer  "employer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "favorites", ["employee_id"], name: "index_favorites_on_employee_id", using: :btree
+  add_index "favorites", ["employer_id"], name: "index_favorites_on_employer_id", using: :btree
 
   create_table "github_accounts", force: true do |t|
     t.integer  "employee_id"
@@ -85,10 +109,40 @@ ActiveRecord::Schema.define(version: 20140228045429) do
 
   add_index "github_repos", ["github_account_id"], name: "index_github_repos_on_github_account_id", using: :btree
 
-  create_table "linkedin_accounts", force: true do |t|
+  create_table "linked_ins", force: true do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "headline"
+    t.string   "industry"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "summary"
+    t.text     "interests"
+    t.string   "languages"
+    t.text     "skills"
+    t.string   "location"
+    t.integer  "employee_id"
+    t.integer  "employer_id"
   end
+
+  add_index "linked_ins", ["employee_id"], name: "index_linked_ins_on_employee_id", using: :btree
+  add_index "linked_ins", ["employer_id"], name: "index_linked_ins_on_employer_id", using: :btree
+
+  create_table "positions", force: true do |t|
+    t.string   "title"
+    t.text     "summary"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.boolean  "is_current"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "linked_in_id"
+  end
+
+  add_index "positions", ["linked_in_id"], name: "index_positions_on_linked_in_id", using: :btree
 
   create_table "stack_overflow_accounts", force: true do |t|
     t.integer  "employee_id"
@@ -114,4 +168,25 @@ ActiveRecord::Schema.define(version: 20140228045429) do
 
   add_index "stack_tags", ["stack_overflow_account_id"], name: "index_stack_tags_on_stack_overflow_account_id", using: :btree
 
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "lastname"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 end

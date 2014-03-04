@@ -11,7 +11,7 @@ html {
 .jumbotron {
   background: none;
   text-align: center;
-  
+
 }
 
 .panel-heading {
@@ -64,7 +64,7 @@ html {
 #taskr-intro-second{
   height:900px;
   background-color: #178FE1;
-  color: white; 
+  color: white;
   -moz-box-shadow:    inset 0 0 10px #000000;
    -webkit-box-shadow: inset 0 0 10px #000000;
    box-shadow:         inset 0 0 10px  #000000;
@@ -112,4 +112,33 @@ html {
   width: 1px;
   height: 200px;
   background-color: #B8B8B8 ;
+}
+
+
+// Table
+
+table {
+  width: 700px;
+  border: 1px solid black;
+  text-align: center;
+  font-size: 14px;
+
+  th {
+    margin: 5px;
+    border: 1px solid black;
+    width: 20px;
+    font-weight: bold;
+  }
+
+  tr {
+    margin: 5px;
+    border: 1px solid black;
+    width: 20px;
+
+    td {
+      border: 1px solid black;
+      width: 10px;
+      padding: 3px;
+    }
+  }
 }

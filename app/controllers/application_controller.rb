@@ -7,23 +7,23 @@ class ApplicationController < ActionController::Base
 
 
   def current_employer
-    @current_employer = Employer.find(session[:employer_id]) if session[:employer_id]
+    @current_employer ||= Employer.find(session[:employer_id]) if session[:employer_id]
   end
 
   # Need to change this or remove... confusing
-  def current_user
-    @current_user ||= GithubAccount.find(session[:github_id]) if session[:github_id]
-  end
+  # def current_user
+  #   @current_user ||= GithubAccount.find(session[:github_id]) if session[:github_id]
+  # end
 
   # Hacky way... change this later
   def current_employee
-    @current_employee = Employee.find_by(git_account: current_user.username)
+    @current_employee ||= Employee.find_by(id: session[:user_id])
   end
 
   # Get all languages data in each repo of a github_user
   def repos_languages_data(git_user)
     allRepos = []
-    github = Github.new oauth_token: current_user.oauth_token
+    github = Github.new oauth_token: current_employee.github_account.oauth_token
     myRepos = github.repos.list user: git_user
     myRepos.each do |repo|
       repo_languages = github.repos.languages git_user, repo.name

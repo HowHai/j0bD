@@ -1,0 +1,67 @@
+<!-- Employer info and favorites and others go here -->
+    <div id="linkedin">Employer: <%= link_to "Sign up with LinkedIn", "/auth/linkedin" %></div>
+
+<% if @linkedin %>
+  <%= "#{@linkedin.first_name} | #{@linkedin.headline} | #{@linkedin.industry}" %>
+
+
+  <h2>General Information</h2>
+  <table>
+    <thead>
+      <th>Name</th>
+      <th>Headline</th>
+      <th>Industry</th>
+      <th>Interests</th>
+      <th>Spoken Languages</th>
+      <th>Skills</th>
+    </thead>
+
+    <tr>
+      <td><%= @linkedin.first_name %></td>
+      <td><%= @linkedin.headline %></td>
+      <td><%= @linkedin.industry %></td>
+      <td><%= @linkedin.interests %></td>
+      <td><%= @linkedin.languages %></td>
+      <td><%= @linkedin.skills %></td>
+    </tr>
+  </table>
+
+  <h2>Positions</h2>
+  <table>
+    <thead>
+      <th>Title</th>
+      <th>Summary</th>
+      <th>Is Current</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+    </thead>
+
+  <% @linkedin.positions.each do |position| %>
+    <tr>
+      <td><%= position.title %></td>
+      <td><%= position.summary %></td>
+      <td><%= position.is_current %></td>
+      <td><%= position.start_date %></td>
+      <td><%= position.end_date %></td>
+    </tr>
+  <% end %>
+  </table>
+
+  <h2>Education</h2>
+  <table>
+    <thead>
+      <th>Degree</th>
+      <th>Field of Study</th>
+      <th>School Name</th>
+    </thead>
+
+  <% @linkedin.educations.each do |education| %>
+    <tr>
+      <td><%= education.degree %></td>
+      <td><%= education.field_of_study %></td>
+      <td><%= education.school_name %></td>
+    </tr>
+  <% end %>
+  </table>
+<% end %>
+
