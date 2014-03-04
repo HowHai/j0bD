@@ -29,6 +29,21 @@
   <% end %>
   </table>
 
+  <h3>Calculated SO Top Tags Score</h3>
+  <table>
+    <thead>
+      <th>Tag</th>
+      <th>Score</th>
+    </thead>
+
+  <% current_employee.calculate_top_tags_score.each do |tag| %>
+    <tr>
+      <td><%= tag[:tag_name] %></td>
+      <td><%= tag[:score] %></td>
+    </tr>
+  <% end %>
+  </table>
+
   <div id="add-accounts">
     <h2>Add accounts</h2>
     <strong>Github: Connected</strong> <br />

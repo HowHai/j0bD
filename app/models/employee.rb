@@ -63,4 +63,42 @@ class Employee < ActiveRecord::Base
     end
     related_tags
   end
+
+  # Calculate top_tags overall score, only answers for now.
+  def calculate_top_tags_score
+    tags_score = []
+    top_tags.each do |tag|
+
+      # Answer_score / answer_count * 10%
+      multiplier = (tag[:answer_score] / tag[:answer_count]) * 0.01
+
+      # Answer_score * multiplier * answer_count * answer_score
+      score = (tag[:answer_score] * multiplier * tag[:answer_count]) * tag[:answer_score]
+      tags_score.push({tag_name: tag[:tag_name], score: score.round})
+    end
+    tags_score
+  end
+
+  # Calculate Dribbble overall boost to front end stats
+  def calculate_dribbble_boost
+    #
+  end
+
+  # Calculate LinkedIn overall boost
+  def calculate_linkedin_boost
+    # Set score/weight for relevant headline?
+    # Set score/weight for relevant industry?
+    # Set score/weight for relevant interests?
+    # Set score/weight for # of spoken languages?
+    # Set score/weight for relevant skills in skills list?
+    # Calculate all data points to get overall general info score
+
+    # Set score/weight for education
+    # calculate all data points to get overall education score
+
+    # Set score/weight at time employed at position
+    # Set score/weight for relevant skill(s) in position summary
+    # Set score/weight for relevant title in position
+    # Calculate all data points to get overall position score
+  end
 end
