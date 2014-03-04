@@ -2,7 +2,7 @@ class GithubAccount < ActiveRecord::Base
   belongs_to :employee
   has_many :github_repos # one to many
 
-  validates :employee_id, :provider, :uid, :oauth_token, presence: true
+  validates :provider, :oauth_token, presence: true
   validates_inclusion_of :provider, in:['github']
 
   # Has not been tested...
