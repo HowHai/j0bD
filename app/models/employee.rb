@@ -67,14 +67,18 @@ class Employee < ActiveRecord::Base
   # Calculate top_tags overall score, only answers for now.
   def calculate_top_tags_score
     tags_score = []
+
+    # Reputation weight
+    reputation = stack_overflow_account.reputation
+
     top_tags.each do |tag|
 
       # Answer_score / answer_count * 10%
       multiplier = (tag[:answer_score] / tag[:answer_count]) * 0.01
 
-      # Answer_score * multiplier * answer_count * answer_score
-      score = (tag[:answer_score] * multiplier * tag[:answer_count]) * tag[:answer_score]
-      tags_score.push({tag_name: tag[:tag_name], score: score.round})
+      # Answer_score * multiplier * answer_count * answer_score + reputation
+      score = ((tag[:answer_score] * multiplier * tag[:answer_count]) * tag[:answer_score]).round + reputation
+      tags_score.push({tag_name: tag[:tag_name], score: score})
     end
     tags_score
   end
