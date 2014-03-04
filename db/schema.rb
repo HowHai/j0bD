@@ -85,6 +85,11 @@ ActiveRecord::Schema.define(version: 20140228045429) do
 
   add_index "github_repos", ["github_account_id"], name: "index_github_repos_on_github_account_id", using: :btree
 
+  create_table "linkedin_accounts", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "stack_overflow_accounts", force: true do |t|
     t.integer  "employee_id"
     t.datetime "created_at"
