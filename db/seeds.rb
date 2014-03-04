@@ -7,9 +7,17 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Employee.destroy_all
+<<<<<<< HEAD
 Employer.destroy_all
+=======
+# Employer.destroy_all
+>>>>>>> front_end
 StackOverflowAccount.destroy_all
 StackTag.destroy_all
 GithubAccount.destroy_all
 GithubRepo.destroy_all
+<<<<<<< HEAD
 Dribbble.destroy_all
+=======
+Dribbble.destroy_all
+>>>>>>> front_end
