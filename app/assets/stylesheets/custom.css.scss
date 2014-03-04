@@ -36,25 +36,17 @@ html {
   border-color: #ffffff transparent transparent transparent;
 }
 
-#down-arrow-orange{
-  text-align: center;
-  margin: 0 auto;
-  width: 0px;
-  height: 0px;
-  border-style: solid;
-  border-width: 50px 75px 0 75px;
-  border-color:  #3CDC18 transparent transparent transparent;
+#testphone {
+  display: inline-block;
+  width: 190px;
+  height: 350px;
+  border-radius: 20px;
+  background: #FFF;
+  -webkit-box-shadow: 0 -5px 30px rgba(0,0,0,.3);
+  box-shadow: 0 -5px 30px rgba(0,0,0,.3);
 }
 
-#down-arrow-green{
-  text-align: center;
-  margin: 0 auto;
-  width: 0px;
-  height: 0px;
-  border-style: solid;
-  border-width: 50px 75px 0 75px;
-  border-color: #178FE1 transparent transparent transparent;
-}
+#phone-app{}
 
 #signup-slide {
   position: relative;
