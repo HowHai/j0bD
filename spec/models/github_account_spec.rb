@@ -12,7 +12,7 @@ describe GithubAccount do
 
   describe "GithubAccount must belong_to Employee model" do
     it "should have a employee_id" do
-      employee = Employee.create(id: 20)
+      Employee.create(id: 20)
       git = GithubAccount.create(employee_id: 20)
       expect(git.employee.id).to eq(20)
     
