@@ -18,6 +18,17 @@ class Employee < ActiveRecord::Base
       php += repo.PHP.to_i if repo.PHP
     end
     repos = {ruby: ruby, javascript: javascript, coffeescript: coffeescript, css: css, php: php}
+
+    # Save top 4 skills
+    count = 0
+    sorted_repos = repos.values.sort
+    while repos.length > 4
+      remove_key = repos.key(sorted_repos[count])
+      repos.delete(remove_key)
+      count += 1
+    end
+
+    return repos
   end
 
   # Get all tags related to top Github skills
