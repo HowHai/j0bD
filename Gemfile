@@ -15,6 +15,7 @@ group :development, :test do
   gem "pry-rails"
   gem 'pry-nav'
   gem "rspec-rails"
+  gem 'factory_girl_rails'
 end
 
 # Use postgresql as the database for Active Record
