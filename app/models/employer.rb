@@ -3,6 +3,8 @@ class Employer < ActiveRecord::Base
   has_many :favorites
   has_many :favorite_employees, through: :favorites, source: :employee
 
+  validates :name, presence: true
+
   # Connect employer to their LinkedIn account
   def self.connect_to_linkedin(auth)
     employer = Employer.where(provider: auth.provider, uid: auth.uid)[0]
@@ -19,6 +21,6 @@ class Employer < ActiveRecord::Base
   end
 
   def add_favorite(employee)
-    self.favorites.create(employee_id: employee)
+    self.favorites.create(employee_id: employee.id)
   end
 end

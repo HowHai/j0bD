@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe Favorite do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:fav) {
+    FactoryGirl.build :favorite
+  }
+  subject {fav}
+  describe "Belongs to employee and employer" do
+    it {should be_valid}
+  end
 end
