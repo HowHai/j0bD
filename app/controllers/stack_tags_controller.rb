@@ -3,7 +3,7 @@ class StackTagsController < ApplicationController
     # Check to see if user already have an account attached to their profile
     stack_user = StackOverflowAccount.find_by(id: params[:stackoverflow_id])
 
-    # Create StackOverflowAccount and connect it to their profile
+    # Create StackOverflowAccount and connect it to profile
     if stack_user.nil?
       #TODO Might want to strong params this later
       stack_info = get_stack_user_info(params[:stackoverflow_id])

@@ -101,6 +101,7 @@ class Employee < ActiveRecord::Base
   # Calculate LinkedIn overall boost
   def calculate_linkedin_boost
     # Set score/weight for relevant headline?
+    headline_score = calculate_LI_headline(linked_in.headline)
     # Set score/weight for relevant industry?
     # Set score/weight for relevant interests?
     # Set score/weight for # of spoken languages?
@@ -114,5 +115,32 @@ class Employee < ActiveRecord::Base
     # Set score/weight for relevant skill(s) in position summary
     # Set score/weight for relevant title in position
     # Calculate all data points to get overall position score
+  end
+
+  private
+
+  # Takes a list of words and string, return matched counts
+  def words_scanner(words, text)
+    text = text.downcase
+    matched_words = []
+
+    words.each do |word|
+      if text.include?(word)
+        matched_words.push(word)
+      end
+    end
+    matched_words.length
+  end
+
+  # LinkedIn score for headline or Position title
+  def calculate_LI_headline(employee_headline)
+    headlines = ['web designer', 'web designer', 'developer', 'web developer', 'Front End developer', 'Back End Developer', 'web architect']
+
+    seniority_boost = ['senior', 'lead', 'sr']
+
+    headlines_score = words_scanner(headlines, employee_headline) * 10
+    seniority_score = words_scanner(seniority_boost, employee_headline) * 50
+
+    total_stats_boost = headlines_score + seniority_score
   end
 end
