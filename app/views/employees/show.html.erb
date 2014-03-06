@@ -2,6 +2,52 @@
   Hello <%= current_employee.github_account.username %>!
   <%= link_to "Log out", "/signout", method: :delete %> <br />
 
+  <h2>Employees Data</h2>
+  <h3>Top Github Skills</h3>
+<% if current_employee.github_account %>
+  <% current_employee.github_top_skills.each do |key, value| %>
+    <%= key %> : <%= value %> <br>
+  <% end %>
+
+  <h3>Related SO Stats</h3>
+  <table>
+    <thead>
+      <th>Tag</th>
+      <th>Answer Count</th>
+      <th>Answer Score</th>
+      <th>Question Count</th>
+      <th>Question Score</th>
+    </thead>
+  <% if current_employee.stack_overflow_account %>
+  <% current_employee.top_tags.each do |tag| %>
+    <tr>
+      <td><%= tag[:tag_name] %></td>
+      <td><%= tag[:answer_count] %></td>
+      <td><%= tag[:answer_score] %></td>
+      <td><%= tag[:question_count] %></td>
+      <td><%= tag[:question_score] %></td>
+    </tr>
+  <% end %>
+  <% end %>
+<% end %>
+  </table>
+
+  <h3>Calculated SO Top Tags Score</h3>
+  <table>
+    <thead>
+      <th>Tag</th>
+      <th>Score</th>
+    </thead>
+
+  <% if current_employee.stack_overflow_account %>
+  <% current_employee.calculate_top_tags_score.each do |tag| %>
+    <tr>
+      <td><%= tag[:tag_name] %></td>
+      <td><%= tag[:score] %></td>
+    </tr>
+  <% end %>
+  <% end %>
+  </table>
 
   <div id="add-accounts">
     <h2>Add accounts</h2>
