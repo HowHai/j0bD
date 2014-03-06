@@ -42,7 +42,9 @@ html, body {
 .section.table, .slide.table {
     display: table;
     width: 100%;
+    margin: 0;
 }
+
 .tableCell {
     display: table-cell;
     vertical-align: middle;
@@ -164,3 +166,4 @@ html, body {
 .fullPage-tooltip.left {
     left: 20px;
 }
+

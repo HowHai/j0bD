@@ -19,5 +19,7 @@
 //= require_tree .
 
 $(document).ready(function() {
-    $.fn.fullpage();
+    $.fn.fullpage({
+      scrollingSpeed: 600,
+    });
 });
