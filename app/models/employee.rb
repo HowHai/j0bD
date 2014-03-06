@@ -100,11 +100,15 @@ class Employee < ActiveRecord::Base
 
   # Calculate LinkedIn overall boost
   def calculate_linkedin_boost
-    # Set score/weight for relevant headline?
+    # Set score/weight for headline
     headline_score = calculate_LI_headline(linked_in.headline)
+
     # Set score/weight for relevant industry?
-    # Set score/weight for relevant interests?
+    industry_score = calculate_LI_industry(linked_in.industry)
+
     # Set score/weight for # of spoken languages?
+    language_score = calculate_LI_languages(linked_in.languages)
+
     # Set score/weight for relevant skills in skills list?
     # Calculate all data points to get overall general info score
 
@@ -142,5 +146,17 @@ class Employee < ActiveRecord::Base
     seniority_score = words_scanner(seniority_boost, employee_headline) * 50
 
     total_stats_boost = headlines_score + seniority_score
+  end
+
+  # LinkedIn score for industry
+  def calculate_LI_industry(employee_industry)
+    industries = ['civil engineering', 'computer games', 'computer hardware', 'computer networking', 'computer software', 'design', 'fine art', 'graphic design', 'information technology and services', 'internet', 'machinery', 'media production']
+
+    industry_score = words_scanner(industries, employee_industry) * 10
+  end
+
+  # LinkedIn score for spoken languages
+  def calculate_LI_languages(employee_languages)
+    linked_in.languages.split(',').count * 30
   end
 end
