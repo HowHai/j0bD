@@ -6,6 +6,16 @@ class Employee < ActiveRecord::Base
   has_many :favorites
   has_many :favorite_employers, through: :favorites, source: :employer
 
+  # Create github account
+  def create_github(auth)
+    self.create_github_account({
+      provider: auth['provider'],
+      uid: auth['uid'],
+      username: auth.extra.raw_info.login,
+      oauth_token: auth.credentials.token
+      })
+  end
+
   # Get top skills from Github's data
   def github_top_skills
     ruby = javascript = coffeescript = css = php = 0
