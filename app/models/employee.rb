@@ -121,8 +121,6 @@ class Employee < ActiveRecord::Base
     # Calculate all data points to get overall position score
   end
 
-  private
-
   # Takes a list of words and string, return matched counts
   def words_scanner(words, text)
     text = text.downcase
@@ -137,26 +135,32 @@ class Employee < ActiveRecord::Base
   end
 
   # LinkedIn score for headline or Position title
-  def calculate_LI_headline(employee_headline)
+  def calculate_LI_headline
     headlines = ['web designer', 'web designer', 'developer', 'web developer', 'Front End developer', 'Back End Developer', 'web architect']
 
     seniority_boost = ['senior', 'lead', 'sr']
 
-    headlines_score = words_scanner(headlines, employee_headline) * 10
-    seniority_score = words_scanner(seniority_boost, employee_headline) * 50
+    headlines_score = words_scanner(headlines, linked_in.headline) * 10
+    seniority_score = words_scanner(seniority_boost, linked_in.headline) * 50
 
     total_stats_boost = headlines_score + seniority_score
   end
 
   # LinkedIn score for industry
-  def calculate_LI_industry(employee_industry)
+  def calculate_LI_industry
     industries = ['civil engineering', 'computer games', 'computer hardware', 'computer networking', 'computer software', 'design', 'fine art', 'graphic design', 'information technology and services', 'internet', 'machinery', 'media production']
 
-    industry_score = words_scanner(industries, employee_industry) * 10
+    industry_score = words_scanner(industries, linked_in.industry) * 10
   end
 
   # LinkedIn score for spoken languages
-  def calculate_LI_languages(employee_languages)
+  def calculate_LI_languages
     linked_in.languages.split(',').count * 30
+  end
+
+  # LinkedIn score for skills
+  def calculate_LI_skills
+    top_skills = github_top_skills.keys.map(&:to_s)
+    words_scanner(top_skills, self.linked_in.skills) * 100
   end
 end
