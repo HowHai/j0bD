@@ -96,7 +96,14 @@ class Employee < ActiveRecord::Base
 
   # Calculate Dribbble overall boost to front end stats
   def calculate_dribbble_boost
-    #
+    my_dribbble = self.dribbble
+    shots_score = my_dribbble.shots_count * 50
+    likes_score = (my_dribbble.likes_count * 0.25).to_i
+    likes_received_score = my_dribbble.likes_received_count
+    rebounds_score = my_dribbble.rebounds_count * 100
+    rebounds_received_score = my_dribbble.rebounds_received_count.to_i * 100
+
+    dribbble_boost = shots_score + likes_score + likes_received_score + rebounds_score + rebounds_received_score
   end
 
   # Calculate LinkedIn overall boost
