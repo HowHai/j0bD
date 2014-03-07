@@ -189,4 +189,25 @@ class Employee < ActiveRecord::Base
 
     # TODO: Bachelor and BA are credited if both included in degree.
   end
+
+  # LinkedIn score for work experience(positions)
+  def calculate_LI_positions
+    titles = ['web designer', 'web designer', 'developer', 'web developer', 'Front End developer', 'Back End Developer', 'web architect']
+    seniority_boost = ['senior', 'lead', 'sr']
+    companies = ['google', 'facebook', 'twitter', 'linkedin']
+
+    titles_score = 0
+    summary_score = 0
+    experience_score = 0
+    company_score = 0
+
+    self.linked_in.positons.each do |position|
+      # Calculate score for position's title
+      title = words_scanner(titles, position.title) * 10
+      seniority = words_scanner(seniority_boost, position.title) * 50
+      titles_score += (title + seniority)
+
+
+    end
+  end
 end
