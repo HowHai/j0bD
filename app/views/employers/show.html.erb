@@ -7,7 +7,7 @@ Welcome <%= current_employer.name %> | <%= current_employer ? (link_to "Logout",
     
     
     <!-- PROFILE CARD -->
-<div class="profile-card">
+<div class="profile-card" id="<%=(employee.id)%>">
 <div class="badge-container">
     <%= employee.name %>
   <div class="prof-badges"></div>

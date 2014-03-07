@@ -39,22 +39,28 @@ $(document).ready(function() {
     });
 
 // SWIPE ACTIONS
-  $(function() {      
+  $(function() {
         //Enable swiping...
         $(".profile-card").swipe( {
-          //Generic swipe handler for all directions
-          swipe:function(event, direction, distance, duration, fingerCount) {
-            console.log("You swiped " + direction);
-          },
+          // Generic ALL DIRECTION Swiping
+          // swipe:function(event, direction, distance, duration, fingerCount) {
+          //   console.log("You swiped " + direction);
+          // },
+
           swipeLeft:function(event, distance, duration, fingerCount) {
             console.log("swipeLeft from callback");
-            $(".profile-card").animate({'margin-left':'-1000px'})
-            //  .POST
+
+            var employee_id = $(this).attr('id');
+            console.log(employee_id);
+            //  POST TO FAVORITES LIST
+            $.post("/favorites", { employee: employee_id });
+            $("#"+employee_id).animate({'margin-left':'-1000px'})
           },
+
           swipeRight:function(event, distance, duration, fingerCount) {
             console.log("swipeRight from callback");
-            $(".profile-card").animate({'margin-right':'-1000px'})
-            //  .POST
+            $("#"+employee_id).animate({'margin-right':'-1000px'})
+            //  What to do when swipe right (reject)
           },
           //Default is 75px, set to 0 for demo so any distance triggers swipe
            threshold:75
