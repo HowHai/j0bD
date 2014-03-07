@@ -10,7 +10,7 @@ class GithubAccount < ActiveRecord::Base
     create! do |user|
       user.provider = auth["provider"]
       user.uid = auth["uid"]
-      user.username = auth.info.name # This does not save... weird
+      user.username = auth.extra.raw_info.login
       user.oauth_token = auth.credentials.token
     end
   end

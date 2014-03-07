@@ -1,4 +1,8 @@
 class EmployersController < ApplicationController
+
+  def index
+  end
+
   def create
     # Probably should delete all this
     # auth = env["omniauth.auth"]

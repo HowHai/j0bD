@@ -1,27 +1,15 @@
 class GithubAccountsController < ApplicationController
+
   def create
-    # Assign env["omniauth.auth"] from request to auth
+    # Assigns env["omniauth.auth"] from request to auth
     auth = request.env["omniauth.auth"]
     binding.pry
 
-    # Check for existing account, else create a new one
-    github_user = GithubAccount.find_by_provider_and_uid(auth[:provider], auth[:uid]) || GithubAccount.create_with_omniauth(auth)
-    # Hacky way to update username
+    github_user = GithubAccount.find_by_provider_and_uid(auth[:provider], auth[:uid])
 
-    github_user.update(username: auth.extra.raw_info.login)
-
-    @employee = Employee.find_by(git_account: github_user.username)
-
-    # Create new employee if user sign up with Github
-    if @employee.nil?
-      # Just connects employee and github account for now
-      @employee = Employee.new(git_account: github_user.username)
-      @employee.save # Add restrictions here later?
-
-      # Connect GithubAccount to Employee
-      github_user.update(employee_id: @employee.id)
-
-      session[:user_id] = @employee.id
+    if github_user.nil?
+      @employee = @employee.create
+      github_user = @employee.create_github(auth)
 
       # Create repositories
       allRepos = repos_languages_data(github_user.username)
@@ -29,8 +17,9 @@ class GithubAccountsController < ApplicationController
         merged_repo = repo.merge(github_account_id: github_user.id)
         GithubRepo.create(merged_repo)
       end
+      session[:user_id] = @employee.id
     else
-      # Store session when @employee is found
+      @employee = github_user.employee
       session[:user_id] = @employee.id
     end
 

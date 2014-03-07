@@ -6,6 +6,16 @@ class Employee < ActiveRecord::Base
   has_many :favorites
   has_many :favorite_employers, through: :favorites, source: :employer
 
+  # Create github account
+  def create_github(auth)
+    self.create_github_account({
+      provider: auth['provider'],
+      uid: auth['uid'],
+      username: auth.extra.raw_info.login,
+      oauth_token: auth.credentials.token
+      })
+  end
+
   # Get top skills from Github's data
   def github_top_skills
     ruby = javascript = coffeescript = css = php = 0
@@ -91,19 +101,114 @@ class Employee < ActiveRecord::Base
 
   # Calculate LinkedIn overall boost
   def calculate_linkedin_boost
-    # Set score/weight for relevant headline?
+    # Set score/weight for headline
+    headline_score = calculate_LI_headline
+
     # Set score/weight for relevant industry?
-    # Set score/weight for relevant interests?
+    industry_score = calculate_LI_industry
+
     # Set score/weight for # of spoken languages?
+    language_score = calculate_LI_languages
+
     # Set score/weight for relevant skills in skills list?
+    skills_score = calculate_LI_skills
+
     # Calculate all data points to get overall general info score
 
     # Set score/weight for education
+    education_score = calculate_LI_education
     # calculate all data points to get overall education score
 
     # Set score/weight at time employed at position
     # Set score/weight for relevant skill(s) in position summary
     # Set score/weight for relevant title in position
     # Calculate all data points to get overall position score
+  end
+
+  ########## LinkedIn Score System Methods #######
+  # Takes a list of words and string, return matched counts
+  def words_scanner(words, text)
+    text = text.downcase
+    matched_words = []
+
+    words.each do |word|
+      if text.include?(word)
+        matched_words.push(word)
+      end
+    end
+    matched_words.length
+  end
+
+  # LinkedIn score for headline or Position title
+  def calculate_LI_headline
+    headlines = ['web designer', 'web designer', 'developer', 'web developer', 'Front End developer', 'Back End Developer', 'web architect']
+
+    seniority_boost = ['senior', 'lead', 'sr']
+
+    headlines_score = words_scanner(headlines, linked_in.headline) * 10
+    seniority_score = words_scanner(seniority_boost, linked_in.headline) * 50
+
+    total_stats_boost = headlines_score + seniority_score
+  end
+
+  # LinkedIn score for industry
+  def calculate_LI_industry
+    industries = ['civil engineering', 'computer games', 'computer hardware', 'computer networking', 'computer software', 'design', 'fine art', 'graphic design', 'information technology and services', 'internet', 'machinery', 'media production']
+
+    industry_score = words_scanner(industries, linked_in.industry) * 10
+  end
+
+  # LinkedIn score for spoken languages
+  def calculate_LI_languages
+    linked_in.languages.split(',').count * 30
+  end
+
+  # LinkedIn score for skills
+  def calculate_LI_skills
+    top_skills = github_top_skills.keys.map(&:to_s)
+    words_scanner(top_skills, self.linked_in.skills) * 100
+  end
+
+  # LinkedIn score for educations
+  def calculate_LI_education
+    relevant_fields = ['computer science', 'digital communication', 'media multimedia', 'computer and information sciences', 'artifical intelligence', 'information technology', 'informatics', 'computer and information sciences', 'computer programming', 'data processing', 'information science', 'computer systems', 'computer graphics', 'engineering', 'computer software', 'software engineering', 'computer engineering', 'computer hardware']
+
+    bachelor_degree = ['bachelor', 'ba']
+    master_degree = ['master', 'ma']
+
+    my_degree = linked_in.educations.map(&:degree).compact.join(' ')
+    my_field = linked_in.educations.map(&:field_of_study).compact.join(' ')
+
+    # Field of study score
+    field_score = words_scanner(relevant_fields, my_field)
+
+    # Degree score(s)
+    ba_score = words_scanner(bachelor_degree, my_degree)
+    ma_score = words_scanner(master_degree, my_degree)
+
+    education_score = (ba_score * 10) + (ma_score * 50) + (field_score * 50)
+
+    # TODO: Bachelor and BA are credited if both included in degree.
+  end
+
+  # LinkedIn score for work experience(positions)
+  def calculate_LI_positions
+    titles = ['web designer', 'web designer', 'developer', 'web developer', 'Front End developer', 'Back End Developer', 'web architect']
+    seniority_boost = ['senior', 'lead', 'sr']
+    companies = ['google', 'facebook', 'twitter', 'linkedin']
+
+    titles_score = 0
+    summary_score = 0
+    experience_score = 0
+    company_score = 0
+
+    self.linked_in.positons.each do |position|
+      # Calculate score for position's title
+      title = words_scanner(titles, position.title) * 10
+      seniority = words_scanner(seniority_boost, position.title) * 50
+      titles_score += (title + seniority)
+
+
+    end
   end
 end

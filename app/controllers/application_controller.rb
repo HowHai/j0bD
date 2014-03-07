@@ -3,17 +3,12 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  helper_method :current_user, :current_employee, :current_employer
+  helper_method :current_employee, :current_employer
 
 
   def current_employer
     @current_employer ||= Employer.find(session[:employer_id]) if session[:employer_id]
   end
-
-  # Need to change this or remove... confusing
-  # def current_user
-  #   @current_user ||= GithubAccount.find(session[:github_id]) if session[:github_id]
-  # end
 
   # Hacky way... change this later
   def current_employee
@@ -21,6 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   # Get all languages data in each repo of a github_user
+  # Should refractor this and put in github account model
   def repos_languages_data(git_user)
     allRepos = []
     github = Github.new oauth_token: current_employee.github_account.oauth_token

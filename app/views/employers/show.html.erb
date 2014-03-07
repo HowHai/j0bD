@@ -23,17 +23,69 @@ Welcome <%= current_employer.name %>
 
 <!-- Display Employees -->
 
-<h2>List of Employees</h2>
-<table>
-  <thead>
-    <th>Name</th>
-    <th>Favorites</th>
-  </thead>
 
-  <% @employees.each do |employee| %>
-    <tr>
-      <td><%= employee.name %></td>
-      <td><%= link_to "Add employee", favorites_path(employee: employee.id), method: "post" %></td>
-    </tr>
-  <% end %>
-</table>
+<% @employees.each do |employee| %>
+  <h2><%= employee.name %></h2>
+  <h3>General Info</h3>
+  <table>
+    <thead>
+      <th>Headline</th>
+      <th>Industry</th>
+      <th>Summary</th>
+      <th>Skills</th>
+      <th>Languages</th>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td><%= employee.linked_in.headline %></td>
+        <td><%= employee.linked_in.industry %></td>
+        <td><%= employee.linked_in.summary %></td>
+        <td><%= employee.linked_in.skills %></td>
+        <td><%= employee.linked_in.languages %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Positions</h3>
+  <table>
+    <thead>
+      <th>Company Name</th>
+      <th>Title</th>
+      <th>Summary</th>
+      <th>Start</th>
+      <th>End</th>
+    </thead>
+
+    <tbody>
+    <% employee.linked_in.positions.each do |position| %>
+      <tr>
+        <td><%= position.company_name %></td>
+        <td><%= position.title %></td>
+        <td><%= position.summary %></td>
+        <td><%= position.start_date %></td>
+        <td><%= position.end_date %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <h3>Education</h3>
+  <table>
+    <thead>
+      <th>Degree</th>
+      <th>Field of Study</th>
+      <th>School</th>
+    </thead>
+
+    <tbody>
+    <% employee.linked_in.educations.each do |education| %>
+      <tr>
+        <td><%= education.degree %></td>
+        <td><%= education.field_of_study %></td>
+        <td><%= education.school_name %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
