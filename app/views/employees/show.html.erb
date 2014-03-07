@@ -2,6 +2,58 @@
   Hello <%= current_employee.github_account.username %>!
   <%= link_to "Log out", "/signout", method: :delete %> <br />
 
+      <!-- PROFILE CARD -->
+<div class="profile-card">
+  <div class="prof-pic"></div>
+<div class="badge-container">
+  <div class="prof-badges"></div>
+  <div class="prof-badges"></div>
+  <div class="prof-badges"></div>
+  <div class="prof-badges"></div>
+</div>
+<div class="text-container">
+  <div class="prof-text"></div>
+  <div class="prof-text"></div>
+  <div class="prof-text"></div>
+</div>
+<div class="panel-container">
+  <div class="prof-panel">Github : connected</div>
+  <div class="prof-panel">
+<!-- STACK OVER FLOW -->
+  <% if current_employee.stack_overflow_account %>
+      <strong>Stackoverflow: Connected</strong> <br />
+    <% else %>
+      <!-- Enter StackOverflow's ID to save info to database -->
+      <%= form_tag "/stack_tags", method: 'POST' do %>
+        <%= text_field_tag :stackoverflow_id, params[:stackoverflow_id] %>
+        <%= submit_tag "Add StackOverflow" %>
+      <% end %>
+    <% end %>
+    </div>
+  <div class="prof-panel">
+          <!-- LinkedIn -->
+    <% if current_employee.linked_in %>
+      LinkedIn: Connected <br>
+    <% else %>
+      <div id="linkedin"><%= link_to "Sign up with LinkedIn", "/auth/linkedin" %></div>
+    <% end %>
+  </div>
+  <div class="prof-panel">
+        <!-- Dribble -->
+    <% if current_employee.dribbble %>
+      <strong>Dribbble: Connected</strong> <br />
+    <% else %>
+      <%= form_tag "/dribbbles", method: 'POST' do %>
+        <%= text_field_tag :dribbble_username, params[:dribbble_username] %>
+        <%= submit_tag "Add Dribbble" %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="favbutton">Settings</div>
+  </div>
+</div>
+
+
   <h2>Employees Data</h2>
   <h3>Top Github Skills</h3>
 <% if current_employee.github_account %>
@@ -48,39 +100,6 @@
   <% end %>
   <% end %>
   </table>
-
-  <div id="add-accounts">
-    <h2>Add accounts</h2>
-    <strong>Github: Connected</strong> <br />
-    <!-- Allow employee to add stackoveflow account if not connected to profile -->
-    <!-- TODO Refractor this by creating rails helper -->
-    <% if current_employee.stack_overflow_account %>
-      <strong>Stackoverflow: Connected</strong> <br />
-    <% else %>
-      <!-- Enter StackOverflow's ID to save info to database -->
-      <%= form_tag "/stack_tags", method: 'POST' do %>
-        <%= text_field_tag :stackoverflow_id, params[:stackoverflow_id] %>
-        <%= submit_tag "Add StackOverflow" %>
-      <% end %>
-    <% end %>
-
-      <!-- LinkedIn -->
-    <% if current_employee.linked_in %>
-      LinkedIn: Connected <br>
-    <% else %>
-      <div id="linkedin"><%= link_to "Sign up with LinkedIn", "/auth/linkedin" %></div>
-    <% end %>
-
-    <% if current_employee.dribbble %>
-      <strong>Dribbble: Connected</strong> <br />
-    <% else %>
-      <!-- Dribble -->
-      <%= form_tag "/dribbbles", method: 'POST' do %>
-        <%= text_field_tag :dribbble_username, params[:dribbble_username] %>
-        <%= submit_tag "Add Dribbble" %>
-      <% end %>
-    <% end %>
-  </div>
 
   <!-- Show all Github repositories -->
   <%= @employee.github_account.username %>'s Repositories

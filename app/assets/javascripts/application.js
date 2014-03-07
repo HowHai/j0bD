@@ -58,6 +58,7 @@ $(document).ready(function() {
           },
 
           swipeRight:function(event, distance, duration, fingerCount) {
+            var employee_id = $(this).attr('id');
             console.log("swipeRight from callback");
             $("#"+employee_id).animate({'margin-right':'-1000px'})
             //  What to do when swipe right (reject)
