@@ -122,17 +122,21 @@ class Employee < ActiveRecord::Base
     # Set score/weight at time employed at position
     # Set score/weight for relevant skill(s) in position summary
     # Set score/weight for relevant title in position
+    positions_score = calculate_LI_positions
+
     # Calculate all data points to get overall position score
+    # Test hash to view datas for now... should return a % modifier
+    {headline_score: headline_score, industry_score: industry_score, language_score: language_score, skills_score: skills_score, education_score: education_score, positions_score: positions_score}
   end
 
   ########## LinkedIn Score System Methods #######
   # Takes a list of words and string, return matched counts
   def words_scanner(words, text)
-    text = text.downcase
     matched_words = []
+    return matched_words.length if text.nil?
 
     words.each do |word|
-      if text.include?(word)
+      if text.downcase.include?(word)
         matched_words.push(word)
       end
     end
@@ -196,19 +200,30 @@ class Employee < ActiveRecord::Base
     titles = ['web designer', 'web designer', 'developer', 'web developer', 'Front End developer', 'Back End Developer', 'web architect']
     seniority_boost = ['senior', 'lead', 'sr']
     companies = ['google', 'facebook', 'twitter', 'linkedin']
+    relevant_skills = self.top_tags.map {|tag| tag[:tag_name]}
 
     titles_score = 0
     summary_score = 0
     experience_score = 0
     company_score = 0
 
-    self.linked_in.positons.each do |position|
+    self.linked_in.positions.each do |position|
       # Calculate score for position's title
       title = words_scanner(titles, position.title) * 10
       seniority = words_scanner(seniority_boost, position.title) * 50
       titles_score += (title + seniority)
 
+      # Calculate score for position's summary
+      summary_score += words_scanner(relevant_skills, position.summary) * 10
 
+      # Calculate score for position's experience
+      days_at_job = (position.end_date - position.start_date).to_i
+      experience_score += days_at_job * 1
+
+      # Calculate score for position's company
+      company_score += words_scanner(companies, position.company_name) * 500
     end
+
+    total_positions_score = titles_score + summary_score + experience_score + company_score
   end
 end
