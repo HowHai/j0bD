@@ -8,6 +8,7 @@
   <% current_employer.favorite_employees.each do |favorite| %>
     <tr>
       <td><%= favorite.name %></td>
+      <td><%= favorite.id %></td>
     </tr>
   <% end %>
 </table>

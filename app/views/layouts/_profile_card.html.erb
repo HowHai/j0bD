@@ -1,6 +1,8 @@
 <!-- PROFILE CARD -->
-<div class="profile-card">
+<div class="profile-card" id="<%=(@employee.id)%>">
+  <div class="prof-pic"></div>
 <div class="badge-container">
+    <%= @employee.name %>
   <div class="prof-badges"></div>
   <div class="prof-badges"></div>
   <div class="prof-badges"></div>
@@ -12,10 +14,11 @@
   <div class="prof-text"></div>
 </div>
 <div class="panel-container">
-  <div class="prof-panel"></div>
-  <div class="prof-panel"></div>
-  <div class="prof-panel"></div>
-  <div class="prof-panel"></div>
+  <div class="prof-panel"><%= @employee.github_account %></div>
+  <div class="prof-panel"><%= @employee.stack_overflow_account %></div>
+  <div class="prof-panel"><%= @employee.linked_in %></div>
+  <div class="prof-panel"><%= @employee.dribbble %></div>
 </div>
-<div class="favbutton">Favorite</div>
+<div class="favbutton">Share</div>
+</div>
 </div>

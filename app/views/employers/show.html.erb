@@ -1,32 +1,30 @@
 Welcome <%= current_employer.name %> | <%= current_employer ? (link_to "Logout", employers_path, {method: :delete}) : nil %><br />
 
+<div id="employee-profile">
 
-  <% @employees.each do |employee| %>
-    
-    
-    <!-- PROFILE CARD -->
-<div class="profile-card" id="<%=(employee.id)%>">
-  <div class="prof-pic"></div>
-<div class="badge-container">
-    <%= employee.name %>
-  <div class="prof-badges"></div>
-  <div class="prof-badges"></div>
-  <div class="prof-badges"></div>
-  <div class="prof-badges"></div>
-</div>
-<div class="text-container">
-  <div class="prof-text"></div>
-  <div class="prof-text"></div>
-  <div class="prof-text"></div>
-</div>
-<div class="panel-container">
-  <div class="prof-panel"><%= employee.github_account %></div>
-  <div class="prof-panel"><%= employee.stack_overflow_account %></div>
-  <div class="prof-panel"><%= employee.linked_in %></div>
-  <div class="prof-panel"><%= employee.dribbble %></div>
-</div>
-<div class="favbutton">Share</div>
-</div>
-</div>
+<!-- PROFILE CARD -->
+  <div class="profile-card" id="<%=(@employees[0].id)%>">
+    <div class="prof-pic"></div>
+  <div class="badge-container">
+      <%= @employees[0].name %>
+    <div class="prof-badges"></div>
+    <div class="prof-badges"></div>
+    <div class="prof-badges"></div>
+    <div class="prof-badges"></div>
+  </div>
+  <div class="text-container">
+    <div class="prof-text"></div>
+    <div class="prof-text"></div>
+    <div class="prof-text"></div>
+  </div>
+  <div class="panel-container">
+    <div class="prof-panel"><%= @employees[0].github_account %></div>
+    <div class="prof-panel"><%= @employees[0].stack_overflow_account %></div>
+    <div class="prof-panel"><%= @employees[0].linked_in %></div>
+    <div class="prof-panel"><%= @employees[0].dribbble %></div>
+  </div>
+  <div class="favbutton">Share</div>
+  </div>
+  </div>
 
-  <% end %>
+</div>

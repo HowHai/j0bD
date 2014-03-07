@@ -53,7 +53,7 @@ $(document).ready(function() {
             var employee_id = $(this).attr('id');
             console.log(employee_id);
             //  POST TO FAVORITES LIST
-            $.post("/favorites", { employee: employee_id });
+            $.post("/favorites", { employee: employee_id }, null, 'script');
             $("#"+employee_id).animate({'margin-left':'-1000px'})
           },
 
