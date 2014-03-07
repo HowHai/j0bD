@@ -178,14 +178,30 @@ nav:hover{
 .profile-card{
   margin: 0 auto;
   display: block;
-  background-color: transparent;
+  background-color: orange;
   border: 4px solid white;
   border-radius: 15px;
   height: 400px;
   width: 225px;
+  color: white;
     -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+}
+
+/* PROFILE PICTURE */
+.prof-pic {
+  position: absolute;
+  background-image: url(j0bd-avater.png);
+  background-repeat: no-repeat;
+  background-size:55px 55px;
+  background-position: bottom;
+  background-color: #E8E8E8 ;
+  margin: -25px 0 0 -25px;
+  width: 75px;
+  height: 75px;
+  border: 8px solid green;
+  border-radius: 50%;
 }
 
 .badge-container{
@@ -214,6 +230,7 @@ nav:hover{
   background-color: white;
 }
 
+/* PANELS */
 .panel-container{
   margin: 0 auto;
   text-align: center;
@@ -224,9 +241,9 @@ nav:hover{
   display: inline-block;
   width: 100px;
   height:  100px;
-  background-color: white;
+  background-color: none;
+  border: 2px solid white;
   overflow: hidden;
-  opacity: 0.85;
 }
 
 /* FAVORITE BUTTON */
