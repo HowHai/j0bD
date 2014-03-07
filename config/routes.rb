@@ -1,4 +1,7 @@
 J0bD::Application.routes.draw do
+
+  get 'employers/favoritelist' => 'employers#favoriteList'
+
   resources :github_repos
   resources :employees
   resources :stack_tags

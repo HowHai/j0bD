@@ -24,4 +24,9 @@ class EmployersController < ApplicationController
     session[:employer_id] = nil
     redirect_to root_path
   end
+
+  def favoritelist
+  end
+
+
 end

@@ -1,7 +1,0 @@
-    <!-- Sign in with Github -->
-    <% if current_user %>
-      Hello <%= current_user.username %>!
-      <%= link_to "Log out", "/signout", method: :delete %>
-    <% else %>
-      <%= link_to "Sign in with Github", "/auth/github", :class => "btn btn-primary btn-lg", :id => 'signup-slide-btn' %>
-    <% end %>
