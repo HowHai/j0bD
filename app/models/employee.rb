@@ -16,6 +16,32 @@ class Employee < ActiveRecord::Base
       })
   end
 
+  # Modify top skills using all datas
+  def skills_stats_modifier
+    # Modify stats using top_tags_score
+    top_stats = self.github_top_skills
+    # top_stats_name = top_stats.map { |tag| tag[:tag_name]}
+
+    top_stats.each do |stats|
+      case stats
+      when :ruby
+
+      end
+    end
+
+      #   all_repos.each do |repo|
+      # case repo
+      # when 'ruby'
+      #   all_repos.push(['ruby-on-rails'])
+      # when 'javascript'
+      #   all_repos.push(['jquery'])
+      # when 'css'
+      #   all_repos.push(['html', 'css3', 'layout', 'haml', 'markdown'])
+      # end
+      # all_repos.flatten!
+
+  end
+
   # Get top skills from Github's data
   def github_top_skills
     ruby = javascript = coffeescript = css = php = 0
@@ -84,13 +110,14 @@ class Employee < ActiveRecord::Base
     top_tags.each do |tag|
 
       # Answer_score / answer_count * 10%
-      multiplier = (tag[:answer_score] / tag[:answer_count]) * 0.01
+      multiplier = (tag[:answer_score] / tag[:answer_count]) * 0.02
 
       # Answer_score * multiplier * answer_count * answer_score + reputation
       score = ((tag[:answer_score] * multiplier * tag[:answer_count]) * tag[:answer_score]).round + reputation
       tags_score.push({tag_name: tag[:tag_name], score: score})
     end
-    tags_score
+    # Hacky way to remove dupls... check out why later
+    tags_score.uniq
 
   end
 

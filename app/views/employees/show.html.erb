@@ -9,7 +9,27 @@
     <%= key %> : <%= value %> <br>
   <% end %>
 
+  <h3></h3>
+
+
+  <h3>Calculated SO Top Tags Score</h3>
+  <table>
+    <thead>
+      <th>Tag</th>
+      <th>Score</th>
+    </thead>
+
+  <% if current_employee.stack_overflow_account %>
+  <% current_employee.calculate_top_tags_score.each do |tag| %>
+    <tr>
+      <td><%= tag[:tag_name] %></td>
+      <td><%= tag[:score] %></td>
+    </tr>
+  <% end %>
+  <% end %>
+  </table>
   <h3>Related SO Stats</h3>
+
   <table>
     <thead>
       <th>Tag</th>
@@ -32,22 +52,6 @@
 <% end %>
   </table>
 
-  <h3>Calculated SO Top Tags Score</h3>
-  <table>
-    <thead>
-      <th>Tag</th>
-      <th>Score</th>
-    </thead>
-
-  <% if current_employee.stack_overflow_account %>
-  <% current_employee.calculate_top_tags_score.each do |tag| %>
-    <tr>
-      <td><%= tag[:tag_name] %></td>
-      <td><%= tag[:score] %></td>
-    </tr>
-  <% end %>
-  <% end %>
-  </table>
 
   <div id="add-accounts">
     <h2>Add accounts</h2>
