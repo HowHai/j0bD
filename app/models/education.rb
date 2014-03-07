@@ -1,6 +1,8 @@
 class Education < ActiveRecord::Base
   belongs_to :linked_in
 
+  validates :degree, presence: true
+
   def self.create_educations(linkedin, auth)
     educations = auth.extra.raw_info.educations.values[1]
     educations.each do |education|

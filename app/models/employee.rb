@@ -81,6 +81,7 @@ class Employee < ActiveRecord::Base
       tags_score.push({tag_name: tag[:tag_name], score: score})
     end
     tags_score
+
   end
 
   # Calculate Dribbble overall boost to front end stats

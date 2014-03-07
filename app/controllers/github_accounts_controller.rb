@@ -2,6 +2,7 @@ class GithubAccountsController < ApplicationController
   def create
     # Assign env["omniauth.auth"] from request to auth
     auth = request.env["omniauth.auth"]
+    binding.pry
 
     # Check for existing account, else create a new one
     github_user = GithubAccount.find_by_provider_and_uid(auth[:provider], auth[:uid]) || GithubAccount.create_with_omniauth(auth)
