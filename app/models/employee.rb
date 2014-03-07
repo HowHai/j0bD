@@ -101,18 +101,21 @@ class Employee < ActiveRecord::Base
   # Calculate LinkedIn overall boost
   def calculate_linkedin_boost
     # Set score/weight for headline
-    headline_score = calculate_LI_headline(linked_in.headline)
+    headline_score = calculate_LI_headline
 
     # Set score/weight for relevant industry?
-    industry_score = calculate_LI_industry(linked_in.industry)
+    industry_score = calculate_LI_industry
 
     # Set score/weight for # of spoken languages?
-    language_score = calculate_LI_languages(linked_in.languages)
+    language_score = calculate_LI_languages
 
     # Set score/weight for relevant skills in skills list?
+    skills_score = calculate_LI_skills
+
     # Calculate all data points to get overall general info score
 
     # Set score/weight for education
+    education_score = calculate_LI_education
     # calculate all data points to get overall education score
 
     # Set score/weight at time employed at position
@@ -121,6 +124,7 @@ class Employee < ActiveRecord::Base
     # Calculate all data points to get overall position score
   end
 
+  ########## LinkedIn Score System Methods #######
   # Takes a list of words and string, return matched counts
   def words_scanner(words, text)
     text = text.downcase
@@ -162,5 +166,27 @@ class Employee < ActiveRecord::Base
   def calculate_LI_skills
     top_skills = github_top_skills.keys.map(&:to_s)
     words_scanner(top_skills, self.linked_in.skills) * 100
+  end
+
+  # LinkedIn score for educations
+  def calculate_LI_education
+    relevant_fields = ['computer science', 'digital communication', 'media multimedia', 'computer and information sciences', 'artifical intelligence', 'information technology', 'informatics', 'computer and information sciences', 'computer programming', 'data processing', 'information science', 'computer systems', 'computer graphics', 'engineering', 'computer software', 'software engineering', 'computer engineering', 'computer hardware']
+
+    bachelor_degree = ['bachelor', 'ba']
+    master_degree = ['master', 'ma']
+
+    my_degree = linked_in.educations.map(&:degree).compact.join(' ')
+    my_field = linked_in.educations.map(&:field_of_study).compact.join(' ')
+
+    # Field of study score
+    field_score = words_scanner(relevant_fields, my_field)
+
+    # Degree score(s)
+    ba_score = words_scanner(bachelor_degree, my_degree)
+    ma_score = words_scanner(master_degree, my_degree)
+
+    education_score = (ba_score * 10) + (ma_score * 50) + (field_score * 50)
+
+    # TODO: Bachelor and BA are credited if both included in degree.
   end
 end
