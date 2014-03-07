@@ -19,7 +19,45 @@
 //= require_tree .
 
 $(document).ready(function() {
-    $.fn.fullpage({
-      scrollingSpeed: 600,
+    // $.fn.fullpage({
+    // });
+
+//  CUSTOM HAMBURGER MENU
+  $("#hamclose").hide();
+    $("#hambut").click(function(){
+        $('#content').animate({'margin-left' : '30%'});
+        $("#menu").show().animate({'width':'30%'})
+        $("#hambut").hide();
+        $("#hamclose").show();
+        });
+
+  $("#hamclose").click(function(){
+    $('#content').animate({'margin-left' : '0px'});
+    $("#menu").show().animate({'width':'0px'})
+    $("#hamclose").hide();
+    $("#hambut").show();
     });
+
+// SWIPE ACTIONS
+  $(function() {      
+        //Enable swiping...
+        $(".profile-card").swipe( {
+          //Generic swipe handler for all directions
+          swipe:function(event, direction, distance, duration, fingerCount) {
+            console.log("You swiped " + direction);
+          },
+          swipeLeft:function(event, distance, duration, fingerCount) {
+            console.log("swipeLeft from callback");
+            $(".profile-card").animate({'margin-left':'-1000px'})
+            //  .POST
+          },
+          swipeRight:function(event, distance, duration, fingerCount) {
+            console.log("swipeRight from callback");
+            $(".profile-card").animate({'margin-right':'-1000px'})
+            //  .POST
+          },
+          //Default is 75px, set to 0 for demo so any distance triggers swipe
+           threshold:75
+        });
+      });
 });

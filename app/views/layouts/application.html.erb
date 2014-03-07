@@ -12,7 +12,15 @@
 </head>
 <body>
 
-<%= yield %>
+<%#= render partial: 'layouts/nav' %>
+
+<div id="content">
+  <%= yield %>
+</div>
+
+<div id="menu">
+  <%= render partial: 'layouts/menu' %>
+</div>
 
 </body>
 </html>

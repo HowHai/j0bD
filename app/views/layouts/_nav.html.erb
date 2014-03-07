@@ -1,0 +1,29 @@
+<nav>
+  <div class="nav-container">
+
+    <div class="ham-container">
+      <div id="hambut">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+      </div>
+    <div id="hamclose">X</div>
+  </div>
+
+  <!-- SEARCH BAR -->
+      <div class="search-container">
+        <div id="search">
+          <%= form_tag "/", method: "post" do %>
+          <%= text_field_tag :search_candidate, params[:search_candidate], placeholder: "Search" %> <br>
+          <%= submit_tag "Search" %>
+          <% end %>
+        </div>
+      </div>
+
+  <!-- SIGN UP / SIGN IN BUTTONS -->
+      <div class="button-container">
+          <button class="btn btn-primary btn-lg btn-sm" data-toggle="modal" data-target="#myModal">Sign Up</button>
+          <button class="btn btn-primary btn-lg btn-sm" data-toggle="modal" data-target="#myModal">Sign In</button>
+      </div>
+  </div>
+</nav>

@@ -1,39 +1,51 @@
-Welcome <%= current_employer.name %>
-<!-- Employer info and favorites and others go here -->
+<style>body{background-color: orange;}</style>
 
-<!-- Search for potential candidates -->
-<%= form_tag "/", method: "post" do %>
-  <%= text_field_tag :search_candidate, params[:search_candidate], placeholder: "Search" %> <br>
-  <%= submit_tag "Search" %>
-<% end %>
+Welcome <%= current_employer.name %> | <%= current_employer ? (link_to "Logout", employers_path, {method: :delete}) : nil %><br />
 
-<!-- Employer's favorite list -->
+
+  <% @employees.each do |employee| %>
+    
+    
+    <!-- PROFILE CARD -->
+<div class="profile-card">
+<div class="badge-container">
+    <%= employee.name %>
+  <div class="prof-badges"></div>
+  <div class="prof-badges"></div>
+  <div class="prof-badges"></div>
+  <div class="prof-badges"></div>
+</div>
+<div class="text-container">
+  <div class="prof-text"></div>
+  <div class="prof-text"></div>
+  <div class="prof-text"></div>
+</div>
+<div class="panel-container">
+  <div class="prof-panel"><%= employee.github_account %></div>
+  <div class="prof-panel"><%= employee.stack_overflow_account %></div>
+  <div class="prof-panel"><%= employee.linked_in %></div>
+  <div class="prof-panel"><%= employee.dribbble %></div>
+</div>
+<div class="favbutton"><%= link_to "Favorite", favorites_path(employee: employee.id), method: "post" %></div>
+</div>
+</div>
+
+  <% end %>
+
+
+
+
+
+<!-- Employer's favorite list
 <h2>Your favorites</h2>
 <table>
   <thead>
     <th>Name</th>
   </thead>
 
-  <% current_employer.favorite_employees.each do |favorite| %>
+  <% #current_employer.favorite_employees.each do |favorite| %>
     <tr>
-      <td><%= favorite.name %></td>
+      <td><%#= favorite.name %></td>
     </tr>
-  <% end %>
-</table>
-
-<!-- Display Employees -->
-
-<h2>List of Employees</h2>
-<table>
-  <thead>
-    <th>Name</th>
-    <th>Favorites</th>
-  </thead>
-
-  <% @employees.each do |employee| %>
-    <tr>
-      <td><%= employee.name %></td>
-      <td><%= link_to "Add employee", favorites_path(employee: employee.id), method: "post" %></td>
-    </tr>
-  <% end %>
-</table>
+  <%# end %>
+</table> -->
