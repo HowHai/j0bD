@@ -3,7 +3,6 @@ class GithubAccountsController < ApplicationController
   def create
     # Assigns env["omniauth.auth"] from request to auth
     auth = request.env["omniauth.auth"]
-    binding.pry
 
     github_user = GithubAccount.find_by_provider_and_uid(auth[:provider], auth[:uid])
 
