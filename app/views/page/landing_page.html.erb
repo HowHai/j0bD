@@ -1,7 +1,13 @@
+<!-- NAV BAR -->
+<div class="navbar">
+  <button class="btn btn-primary btn-lg btn-sm" data-toggle="modal" data-target="#myModal">Sign Up</button>
+  <button class="btn btn-primary btn-lg btn-sm" data-toggle="modal" data-target="#myModal">Sign In</button>
+</div>
 <!-- MODAL -->
 <%= render partial: 'layouts/signup_modal' %>
-<!-- SIGN UP BUTTON -->
-<div id="taskr-intro-first">
+
+<!-- SIGN UP BUTTON  - SLIDE 1-->
+<div class="section" id="taskr-intro-first" data-anchor="slide1">
   <div class="jumbotron">
     <div class="signup-form-slide">
       <h1>J<span class="j0bd_title">0</span>bd.</h1>
@@ -11,54 +17,70 @@
   </div>
 </div>
 
-<div id="taskr-intro-second" name="anchorName2">
-<div id="down-arrow"></div>
+<!--SLIDE 2-->
+<div  class="section" id="taskr-intro-second" data-anchor="slide2">
   <div class="jumbotron">
     <div class="signup-form">
       <h1>Coders + Startups</h1>
       <p>Look no further.</p>
 
-      <%=image_tag("j0bd-profile.png", alt: "j0bdprofile", :id => "phone-app", :size => "400x400")%>
+      <%#=image_tag("j0bd-profile.png", alt: "j0bdprofile", :id => "phone-app", :size => "400x400")%>
 
-      <!-- <div id="testphone"></div> -->
-      <p>Test</p>
-
-      </div>
-
-
-
-
-    </div>
+<div class="profile-card">
+  <div class="badge-container">
+    <div class="prof-badges"></div>
+    <div class="prof-badges"></div>
+    <div class="prof-badges"></div>
+    <div class="prof-badges"></div>
+  </div>
+  <div class="text-container">
+    <div class="prof-text"></div>
+    <div class="prof-text"></div>
+    <div class="prof-text"></div>
+  </div>
+  <div class="panel-container">
+    <div class="prof-panel"></div>
+    <div class="prof-panel"></div>
+    <div class="prof-panel"></div>
+    <div class="prof-panel"></div>
+  </div>
+  <div class="favbutton">
+    <div id="heart"></div>
   </div>
 </div>
 
-<div id="taskr-intro-third">
-<!-- <div id="down-arrow-green"></div> -->
+      </div>
+    </div>
+    <div class="arrow"></div>
+  </div>
+
+<!--SLIDE 3 -->
+<div  class="section" id="taskr-intro-third" data-anchor="slide3">
   <div class="jumbotron">
     <div class="signup-form">
       <h1>Fitting the bits.</h1>
       <p>Match need sets with skill sets.</p>
-
-      <%#=image_tag("j0bd-profile.png", alt: "j0bdprofile", :id => "phone-app", :size => "400x400")%>
-
+      <%=image_tag("j0bd-profile.png", alt: "j0bdprofile", :id => "phone-app", :size => "400x400")%>
     </div>
   </div>
+  <div class="arrow"></div>
 </div>
 
-<div id="taskr-intro-fourth">
+<!--SLIDE 4 -->
+<div  class="section" id="taskr-intro-fourth" data-anchor="slide4">
 <!-- <div id="down-arrow-orange"></div> -->
   <div class="jumbotron">
     <div class="signup-form">
       <h1>Automated Profile Creation</h1>
       <p>Find the people you need at a glance.</p>
-
-      <%#=image_tag("j0bd-profile.png", alt: "j0bdprofile", :id => "phone-app", :size => "400x400")%>
-
+      <%=image_tag("j0bd-profile.png", alt: "j0bdprofile", :id => "phone-app", :size => "400x400")%>
     </div>
   </div>
+  <div class="arrow"></div>
 </div>
 
-<div id="taskr-intro-last">
+<!--SLIDE 5 -->
+<div  class="section" id="taskr-intro-last" data-anchor="slide5">
   <div class="jumbotron">
     <div class="signup-form">
       <h1>Get Started</h1>
