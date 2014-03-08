@@ -3,7 +3,7 @@ class Employee < ActiveRecord::Base
   has_one :dribbble
   has_one :stack_overflow_account
   has_one :linked_in
-  has_many :favorites
+  has_many :favorites # Need this?
   has_many :favorite_employers, through: :favorites, source: :employer
 
   # Create github account
@@ -14,6 +14,53 @@ class Employee < ActiveRecord::Base
       username: auth.extra.raw_info.login,
       oauth_token: auth.credentials.token
       })
+  end
+
+  # Modify top skills using all datas
+  def skills_stats_modifier
+    # Modify stats using StackOverflow's top_tags_score
+    top_stats = self.github_top_skills
+    top_tags_score = self.calculate_top_tags_score
+    # Hard code for now... out of time.
+    ruby_tags = ['ruby', 'ruby-on-rails']
+    javascript_tags = ['jquery', 'angularjs', 'nodejs']
+    css_tags = ['html', 'css3', 'layout', 'haml', 'markdown']
+
+    top_tags_score.each do |tag|
+      if ruby_tags.include?(tag[:tag_name])
+        top_stats[:ruby] += tag[:score]
+      elsif javascript_tags.include?(tag[:tag_name])
+        top_stats[:javascript] += tag[:score]
+      elsif css_tags.include?(tag[:tag_name])
+        top_stats[:css] += tag[:score]
+      end
+    end
+
+    # Modify stats using Dribbble
+    top_stats[:css] += self.calculate_dribbble_boost
+
+    # Modify stats using LinkedIn
+    # headline: boost overall by %
+    # industry: boost overall by %?
+    # language: boost overall by %?
+    # skills:   boost by ?????
+    # -break it down to skills found?????
+    # education: boost overall by %?
+    # positions: boost by ??????
+    # -break it down to skills found?
+
+    # Simple LinkedIn solution for now...
+    linked_in_boost = self.calculate_linkedin_boost
+    top_stats.each do |key, value|
+      top_stats[key] = (value * linked_in_boost).to_i
+    end
+
+    top_stats
+  end
+
+  # Return a skill if it fits a category... move this osmewhere else later
+  def check_skill(skill)
+
   end
 
   # Get top skills from Github's data
@@ -84,19 +131,27 @@ class Employee < ActiveRecord::Base
     top_tags.each do |tag|
 
       # Answer_score / answer_count * 10%
-      multiplier = (tag[:answer_score] / tag[:answer_count]) * 0.01
+      multiplier = (tag[:answer_score] / tag[:answer_count]) * 0.02
 
       # Answer_score * multiplier * answer_count * answer_score + reputation
       score = ((tag[:answer_score] * multiplier * tag[:answer_count]) * tag[:answer_score]).round + reputation
       tags_score.push({tag_name: tag[:tag_name], score: score})
     end
-    tags_score
+    # Hacky way to remove dupls... check out why later
+    tags_score.uniq
 
   end
 
   # Calculate Dribbble overall boost to front end stats
   def calculate_dribbble_boost
-    #
+    my_dribbble = self.dribbble
+    shots_score = my_dribbble.shots_count * 50
+    likes_score = (my_dribbble.likes_count * 0.25).to_i
+    likes_received_score = my_dribbble.likes_received_count
+    rebounds_score = my_dribbble.rebounds_count * 100
+    rebounds_received_score = my_dribbble.rebounds_received_count.to_i * 100
+
+    dribbble_boost = (shots_score + likes_score + likes_received_score + rebounds_score + rebounds_received_score) * 100
   end
 
   # Calculate LinkedIn overall boost
@@ -122,17 +177,27 @@ class Employee < ActiveRecord::Base
     # Set score/weight at time employed at position
     # Set score/weight for relevant skill(s) in position summary
     # Set score/weight for relevant title in position
+    positions_score = calculate_LI_positions
+
     # Calculate all data points to get overall position score
+    # Test hash to view datas for now... should return a % modifier
+    all_scores = {headline_score: headline_score, industry_score: industry_score, language_score: language_score, skills_score: skills_score, education_score: education_score, positions_score: positions_score}
+
+    total_percentage_boost = 0;
+    all_scores.values.each do |score|
+      total_percentage_boost += (score * 0.001)
+    end
+    total_percentage_boost
   end
 
   ########## LinkedIn Score System Methods #######
   # Takes a list of words and string, return matched counts
   def words_scanner(words, text)
-    text = text.downcase
     matched_words = []
+    return matched_words.length if text.nil?
 
     words.each do |word|
-      if text.include?(word)
+      if text.downcase.include?(word)
         matched_words.push(word)
       end
     end
@@ -145,17 +210,17 @@ class Employee < ActiveRecord::Base
 
     seniority_boost = ['senior', 'lead', 'sr']
 
-    headlines_score = words_scanner(headlines, linked_in.headline) * 10
-    seniority_score = words_scanner(seniority_boost, linked_in.headline) * 50
+    headlines_score = words_scanner(headlines, linked_in.headline) * 100
+    seniority_score = words_scanner(seniority_boost, linked_in.headline) * 300
 
     total_stats_boost = headlines_score + seniority_score
   end
 
   # LinkedIn score for industry
   def calculate_LI_industry
-    industries = ['civil engineering', 'computer games', 'computer hardware', 'computer networking', 'computer software', 'design', 'fine art', 'graphic design', 'information technology and services', 'internet', 'machinery', 'media production']
+    industries = ['civil engineering', 'computer games', 'computer hardware', 'computer networking', 'computer software', 'design', 'fine art', 'graphic design', 'information technology and services', 'internet', 'machinery', 'media production', 'mechanical engineering']
 
-    industry_score = words_scanner(industries, linked_in.industry) * 10
+    industry_score = words_scanner(industries, linked_in.industry) * 100
   end
 
   # LinkedIn score for spoken languages
@@ -166,7 +231,7 @@ class Employee < ActiveRecord::Base
   # LinkedIn score for skills
   def calculate_LI_skills
     top_skills = github_top_skills.keys.map(&:to_s)
-    words_scanner(top_skills, self.linked_in.skills) * 100
+    words_scanner(top_skills, self.linked_in.skills) * 50
   end
 
   # LinkedIn score for educations
@@ -186,7 +251,7 @@ class Employee < ActiveRecord::Base
     ba_score = words_scanner(bachelor_degree, my_degree)
     ma_score = words_scanner(master_degree, my_degree)
 
-    education_score = (ba_score * 10) + (ma_score * 50) + (field_score * 50)
+    education_score = (ba_score * 100) + (ma_score * 500) + (field_score * 500)
 
     # TODO: Bachelor and BA are credited if both included in degree.
   end
@@ -196,19 +261,36 @@ class Employee < ActiveRecord::Base
     titles = ['web designer', 'web designer', 'developer', 'web developer', 'Front End developer', 'Back End Developer', 'web architect']
     seniority_boost = ['senior', 'lead', 'sr']
     companies = ['google', 'facebook', 'twitter', 'linkedin']
+    relevant_skills = self.top_tags.map {|tag| tag[:tag_name]}
 
     titles_score = 0
     summary_score = 0
     experience_score = 0
     company_score = 0
 
-    self.linked_in.positons.each do |position|
+    self.linked_in.positions.each do |position|
       # Calculate score for position's title
       title = words_scanner(titles, position.title) * 10
       seniority = words_scanner(seniority_boost, position.title) * 50
       titles_score += (title + seniority)
 
+      # Calculate score for position's summary
+      summary_score += words_scanner(relevant_skills, position.summary) * 10
 
+      # Calculate score for position's experience
+      days_at_job = (position.end_date - position.start_date).to_i
+      if title > 0
+        experience_score += days_at_job * 1
+      elsif title > 0 && seniority > 0
+        experience_score += days_at_job * 2
+      else
+        experience_score += days_at_job * 0.25
+      end
+
+      # Calculate score for position's company
+      company_score += words_scanner(companies, position.company_name) * 500
     end
+
+    total_positions_score = titles_score + summary_score + experience_score.to_i + company_score
   end
 end
