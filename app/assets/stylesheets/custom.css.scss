@@ -12,61 +12,80 @@ html {
 /* By James Calhoun */
 nav {
   position: fixed;
-  background-color: #178FE1;
-  text-align: right;
-  padding: 5px 5% 0 0;
-  /*opacity: 0.85;*/
+  background-color: white;
   width: 100%;
-  height: auto;
-  z-index: 900;
+  height: 40px;
+  z-index: 800;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -ms-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
-}
-
-nav:hover{
-  opacity: 1;
+  -webkit-box-shadow: 0 6px 4px -4px gray;
+     -moz-box-shadow: 0 6px 4px -4px gray;
+          box-shadow: 0 6px 4px -4px gray;
 }
 
 .nav-container{
+  height: 40px;
   width: 100%;
-  display: inline-block;
+  top:0;
+}
+
+/* NAV Login Status */
+.login-nav {
+  float: left;
 }
 
 /* Hamburger Button */
+.ham-container{
+  padding: 5px 0 0 15px;
+  height: 40px;
+  width: 50px;
+}
+
 #hambut{
-  display: inline-block;
-  text-align: left;
+  /*  ham button */
 }
 
 #hambut .bar{
   height: 4px;
   width: 20px;
-  background-color: white;
+  background-color: gray;
   margin: 4px 0 0 0;
 }
 
-#hamclose{
-  color: white;
-  font-size: 1.75em;
-  font-weight: bold;
+#hambut:hover{
+  .bar{background-color: #2e2e2e;}
+  
 }
-.ham-container{
-  padding: 15px;
-  text-align: left;
-  height: 50px;
-  width: 50px;
-  overflow: hidden;
+
+#hamclose{
+  padding: 0 0 15px 5px;
+  color: gray;
+  font-size: 1.5em;
+  font-weight: bold;
+      -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+#hamclose:hover{
+  color:#2e2e2e;
 }
 
 /* MENU */
 #menu{
+  z-index: 900;
+  position: absolute;
+  top:0px;
   width: 0px;
-  height: 100px;
+  height: 100%;
   background-color: #2e2e2e;
   overflow: hidden;
+     -moz-box-shadow:    inset 0 0 15px #000000;
+   -webkit-box-shadow: inset 0 0 15px #000000;
+   box-shadow:         inset 0 0 15px #000000;
 }
 
 /* Search Bar */
@@ -86,7 +105,7 @@ nav:hover{
 
 /* YIELD CONTENT */
 #content {
-  padding-top: 50px;
+  padding-top: 70px;
 }
 
 /* MODAL STYLING */
