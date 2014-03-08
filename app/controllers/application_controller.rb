@@ -20,9 +20,9 @@ class ApplicationController < ActionController::Base
   def repos_languages_data(git_user)
     allRepos = []
     github = Github.new oauth_token: current_employee.github_account.oauth_token
-    myRepos = github.repos.list user: "justinlala"
+    myRepos = github.repos.list user: git_user
     myRepos.each do |repo|
-      repo_languages = github.repos.languages "justinlala", repo.name
+      repo_languages = github.repos.languages git_user, repo.name
       repoHash = repo_languages.to_hash
       repoHash["name"] = repo.name
       repoHash["created_at"] = repo.created_at

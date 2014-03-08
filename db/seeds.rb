@@ -50,6 +50,44 @@ def random_languages
   end
 end
 
+# Create github repo
+def repos_languages_data(git_user)
+  allRepos = []
+  github = Github.new oauth_token: 'ffd9e5f6f29580ec5f8f1e610e4a55a97af70055'
+  myRepos = github.repos.list user: git_user
+  myRepos.each do |repo|
+    repo_languages = github.repos.languages git_user, repo.name
+    repoHash = repo_languages.to_hash
+    repoHash["name"] = repo.name
+    repoHash["created_at"] = repo.created_at
+    repoHash["updated_at"] = repo.updated_at
+    allRepos.push(repoHash.symbolize_keys!)
+  end
+  allRepos
+end
+
+# Create stack
+def get_stack_user_info(user_id)
+  user_info = HTTParty.get("https://api.stackexchange.com/2.2/users/" + user_id + "?order=desc&sort=reputation&site=stackoverflow&filter=!406FePY_tk75WKBzx&key=d9Fe13Jxvcb)WMzdPi8t7A((")
+
+  user_info = user_info["items"][0]
+  total_badges = user_info["badge_counts"].values.sum
+  stack_info = {id: user_id, reputation: user_info["reputation"], age: user_info["age"].to_i, badge_counts: total_badges}
+  stack_info
+end
+
+def create_dribbble_account(employee, dribbble_username)
+  drib = HTTParty.get("http://api.dribbble.com/players/#{dribbble_username}")
+  drib_info = {
+    username:                 drib["username"],
+    shots_count:              drib["shots_count"],
+    likes_count:              drib["likes_count"],
+    likes_received_count:     drib["likes_received_count"],
+    rebounds_count:           drib["rebounds_count"],
+    rebounds_received_count:  drib["rebounds_received_count"]
+  }
+  employee.create_dribbble(drib_info)
+end
 
 # LinkedIn profiles
 # {headline: "Developer in Residence at General Assemb.ly", industry: "Computer Software", summary: "x", skills: "html, web development, javascript, social networking, sql, css, sharepoint, project management, software documentation, technical writing"} #
@@ -214,9 +252,26 @@ employee.linked_in.educations.create(
 {degree: "M.S.", field_of_study: "Software Engineering", school_name: "DePaul University"}
   )
 
+# Github account
+git1 = employee.create_github_account({
+  provider: 'github',
+  uid: '838283',
+  username: 'sstephenson',
+  oauth_token: 'fsljffew9fw923jfeljf4dos04'
+  })
 
+# Create stack overflow account and tags
+stack_info1 = get_stack_user_info('22224')
+stack_user1 = employee.create_stack_overflow_account(stack_info1)
+stack_user1.create_tags
 
+allRepos1 = repos_languages_data('howhai')
+allRepos1.each do |repo|
+  git1.github_repos.create(repo)
+end
 
+# Create Dribbble account
+create_dribbble_account(employee, 'Skinnyships')
 
 
 ########### 2
@@ -265,7 +320,18 @@ employee2.linked_in.educations.create(
 {degree: "Bachelor of Arts", field_of_study: "Computer and Electrical Engineering", school_name: "University of Texas at Austin"}
   )
 
+  # Github account
+git2 = employee2.create_github_account({
+  provider: 'github',
+  uid: '838283',
+  username: 'sstephenson',
+  oauth_token: 'fsljffew9fw923jfeljf4dos04'
+  })
 
+# Create stack overflow account and tags
+stack_info2 = get_stack_user_info('5445')
+stack_user2 = employee2.create_stack_overflow_account(stack_info2)
+stack_user2.create_tags
 
 ########## 3
 
@@ -308,3 +374,17 @@ employee3.linked_in.educations.create(
 employee3.linked_in.educations.create(
 {degree: "B.A.", field_of_study: "Computer Science, Web Development", school_name: "Florida State University"}
   )
+
+
+  # Github account
+git3 = employee3.create_github_account({
+  provider: 'github',
+  uid: '838283',
+  username: 'sstephenson',
+  oauth_token: 'fsljffew9fw923jfeljf4dos04'
+  })
+
+# Create stack overflow account and tags
+stack_info3 = get_stack_user_info('35364')
+stack_user3 = employee3.create_stack_overflow_account(stack_info3)
+stack_user3.create_tags
