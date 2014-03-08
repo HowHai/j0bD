@@ -8,8 +8,10 @@
       </div>
     <div id="hamclose">X</div>
     </div>
-      <!-- <div class="nav-login">
-      Welcome <%#= current_employer ? (link_to "Logout", employers_path, {method: :delete}) : nil %>
-    </div> -->
+      <div class="nav-login">
+          <%= current_employer ? nil : (link_to "Sign Up", '#', class:"btn btn-primary btn-sm", "data-toggle" => "modal", 'data-target' => '#myModal') %>
+
+          <%= current_employer ? (link_to "Logout", employers_path, {method: :delete}) : nil %>
+    </div>
   </div>
 </nav>

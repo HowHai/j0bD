@@ -2,17 +2,16 @@
 <div class="search-container">
   <div id="search">
     <%= form_tag "/", method: "post" do %>
-    <%= text_field_tag :search_candidate, params[:search_candidate], placeholder: "Search" %> <br>
-    <%= submit_tag "Search" %>
+    <%= text_field_tag :search_candidate, params[:search_candidate], placeholder: "Search" %>
+    <%= submit_tag "Search", class:"btn btn-default btn-sm" %>
     <% end %>
   </div>
 </div>
 
-<!-- SIGN UP / SIGN IN BUTTONS -->
-<div class="button-container">
-    <button class="btn btn-primary btn-lg btn-sm" data-toggle="modal" data-target="#myModal">Sign Up</button>
-    <button class="btn btn-primary btn-lg btn-sm" data-toggle="modal" data-target="#myModal">Sign In</button>
-</div>
+<div class="section">Favorites</div>
+<div class="section">Settings</div>
+<div class="section">Logout</div>
+
 
 <!-- LOGOUT LINK -->
 <%= current_employer ? (link_to "Logout", employers_path, {method: :delete}) : nil %>
