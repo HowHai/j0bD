@@ -18,27 +18,34 @@ class Employee < ActiveRecord::Base
 
   # Modify top skills using all datas
   def skills_stats_modifier
-    # Modify stats using top_tags_score
+    # Modify stats using StackOverflow's top_tags_score
     top_stats = self.github_top_skills
-    # top_stats_name = top_stats.map { |tag| tag[:tag_name]}
+    top_tags_score = self.calculate_top_tags_score
+    # Hard code for now... out of time.
+    ruby_tags = ['ruby', 'ruby-on-rails']
+    javascript_tags = ['jquery', 'angularjs', 'nodejs']
+    css_tags = ['html', 'css3', 'layout', 'haml', 'markdown']
 
-    top_stats.each do |stats|
-      case stats
-      when :ruby
-
+    top_tags_score.each do |tag|
+      if ruby_tags.include?(tag[:tag_name])
+        top_stats[:ruby] += tag[:score]
+      elsif javascript_tags.include?(tag[:tag_name])
+        top_stats[:javascript] += tag[:score]
+      elsif css_tags.include?(tag[:tag_name])
+        top_stats[:css] += tag[:score]
       end
     end
 
-      #   all_repos.each do |repo|
-      # case repo
-      # when 'ruby'
-      #   all_repos.push(['ruby-on-rails'])
-      # when 'javascript'
-      #   all_repos.push(['jquery'])
-      # when 'css'
-      #   all_repos.push(['html', 'css3', 'layout', 'haml', 'markdown'])
-      # end
-      # all_repos.flatten!
+    # Modify stats using Dribbble
+    # dribbble
+
+
+    # Modify stats using LinkedIn
+    # linkedin
+  end
+
+  # Return a skill if it fits a category... move this osmewhere else later
+  def check_skill(skill)
 
   end
 
