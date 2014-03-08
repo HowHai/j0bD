@@ -76,128 +76,24 @@ def get_stack_user_info(user_id)
   stack_info
 end
 
-def create_dribbble_account(employee, dribbble_username)
-  drib = HTTParty.get("http://api.dribbble.com/players/#{dribbble_username}")
+# Generate random numbers
+def random_number(x)
+  rand(700-1)
+end
+
+# Create dribbble account
+def create_dribbble_account(employee)
   drib_info = {
-    username:                 drib["username"],
-    shots_count:              drib["shots_count"],
-    likes_count:              drib["likes_count"],
-    likes_received_count:     drib["likes_received_count"],
-    rebounds_count:           drib["rebounds_count"],
-    rebounds_received_count:  drib["rebounds_received_count"]
+    username:                 random_name,
+    shots_count:              random_number,
+    likes_count:              random_number,
+    likes_received_count:     random_number,
+    rebounds_count:           random_number,
+    rebounds_received_count:  random_number
   }
   employee.create_dribbble(drib_info)
 end
 
-# LinkedIn profiles
-# {headline: "Developer in Residence at General Assemb.ly", industry: "Computer Software", summary: "x", skills: "html, web development, javascript, social networking, sql, css, sharepoint, project management, software documentation, technical writing"} #
-
-# # positions
-# {company_name: "general Assemb.ly",title: "Developer in Residence", summary: "Teaches front-end and back-end web development, and associated computer science topics, to evening and immersive students.", start_date: Date.new(2013,9), end_date: Time.now} #
-
-# {company_name: "general Assemb.ly", title: "Producer -- C&W/AD", summary: "• Helped establish the General Assembly campus in Los Angeles via the coordination of classes, workshops, and social events.
-# • Served as a brand ambassador, introducing new students, instructors, and partners to the campus and mission of General Assembly.
-# • Designed and edited workshop curricula, promotional copy, and other assets.
-# • Provided thoughtful and strategic advice for students seeking continuing education in the areas of design, entrepreneurship, and technology.", start_date: Date.new(2013, 5), end_date: Date.new(2013, 9)} #
-
-# {company_name: "Games.com", title: "Developer Evangelist", summary: "• Engaged with developers, publishers, students, and other game industry professionals at events and via social media; built relationships and fostered a developer community around the Games.com platform before and during its launch.
-# • Created unique, informative content (games, blog posts, code samples, tweets, etc) to educate and inspire developers.
-# • Served as an approachable expert on the Games.com API and other platform resources.
-# • Ran, organized, and attended hackathons, game jams, competitions, meetups, conferences, and other events as a representative of the Games.com brand.
-# • Collected feedback from the developer community to help the Games.com team evolve and improve the developer experience.
-# • Assisted the business development team with lead generation and developer outreach.", start_date: Date.new(2012, 10), end_date: Date.new(2013, 5)} #
-
-# {company_name: "JPMorgan Chase", title: "Analytics Developer", summary: "• Pitched, designed, and coded user-developed business application for migrations team specialists and management.
-# • Guided development of group's business processes with data-driven focus.
-# • Increased automation of internal reporting package to improve quality and efficiency of reports used by colleagues and management.
-# • Conducted extensive validation and clean-up of critical migrations-related data.
-# • Developed custom special-use applications for technical writing and documentation team.
-# • Served as group's subject-matter expert for SharePoint 2007 and related applications.
-# • Provided project updates and design walkthroughs during team lead and project management meetings.", start_date: Date.new(2011, 4), end_date: Date.new(2012, 8)} #
-
-# {company_name: "American Optometric Association", title: "Assistant, Paraoptometric Section", summary: " Streamlined continuing education submission and recordkeeping processes with use of web forms and updated departmental policies.
-# • Established social media strategy for department, created and maintained social networking accounts and blog, familiarized colleagues with social media/new media.
-# • Served as Basecamp administrator, assisted with project management and process evaluation for multiple committees and departments, introduced volunteers and staff to project management principles and software.
-# • Maintained department web pages, created interactive web content to add value to association memberships, trained colleagues on use of CMS and basic HTML.
-# • Edited and assisted with development of continuing education articles and interactive modules.
-# • Devised long-term strategies for improvements to databases, membership application, and continuing education program.", start_date: Date.new(2009, 8), end_date: Date.new(2010, 12)} #
-
-# {degree: "B.A., Economics", field_of_study: "International Studies", school_name: "University of Dayton"} #
-# {degree: "M.S.", field_of_study: "Software Engineering", school_name: "DePaul University"} #
-
-
-
-
-
-# 2
-
-# {headline: "Developer at Cloudy Hills", industry: "Internet", summary: "-Solid understanding of front-end development, including HTML5, CSS3, Javascript, JQuery, and Angular.js
-
-# -Extensive experience with PHP, from legacy 1990's code to modern MVC frameworks. I have worked with the following frameworks : Symphony2, Zend, Laravel, CodeIgniter, CakePHP, Phalcon
-
-# -Databases - Deep understanding of database structure and architechture, with extensive experience with complex database creation, maintanence, and traversal. I have mainly worked with mysql, using raw queries, pdo, and orms.", skills: "PHP, Javascript, jquery, mysql, java, html, css, symfony, c, c++"}
-
-
-# {company_name: "Cloudy Hills", title: "Developer", summary: "PHP/MySql/Symfony2/Javascript/JQuery/Mobile/Ajax/Html5/css3/AngularJS
-
-# Development and consulting on wide variety of websites and applications, both previously existing and built from the ground up. Specializing in both backend and frontend development for larger scale applications.", start_date: Date.new(2013, 3), end_date: Time.now}
-# {company_name: "Book a Band", title: "Developer/Designer", summary: "Bookaband.com is a one stop place to find and book a local band for your awesome events.
-
-# Late 2012, Dave Seideman, founder of bookaband.com decided to do an overhaul of the 10+ year old website system that is currently in place.
-
-# This website was built from the ground up, based from the php symfony2 framework, and utilizes javascript, jquery, and several awesome external API's such as indextank and stripe.", start_date: Date.new(2012, 9), end_date: Date.new(2013, 6)}
-# {company_name: "Prelude Interactive", title: "Developer", summary: "Prelude Interactive is a technology company in Austin, Texas, specializing in nonprofit and cause focused software, tools, and processes.
-
-# Assigned a wide variety of projects including focuses on php script development, research, salesforce integration, and data analysis.", start_date: Date.new(2012, 3), end_date: Date.new(2013, 3)}
-# {company_name: "Wisga.com", title: "Developer", summary: "Wisga is an exciting student project, created and founded by students at Rice University which helps college students gain leverage in finding internship or research opportunities through the experiences of other people they know or would have the opportunity to meet.
-
-# Being one of the initial developers, this was a life-changing experience where I was able to be immersed in every dimension of web development, and gain the skill sets necessary to begin my career as a developer.
-
-# Developed initial front end and back end functionality; PHP, Javascript, Jquery
-# Developed relational database schema: MySql", start_date: Date.new(2011, 3), end_date: Date.new(2012, 8)}
-
-# {degree: "Bachelor of Arts", field_of_study: "Computer and Electrical Engineering", school_name: "University of Texas at Austin"}
-
-
-
-# 3
-
-# {headline: "Full Stack / Python Developer", industry: "Internet", summary: "+ Python/Django front and back-end application developer
-# + Database administration, design and optimization in PostgreSQL and MySQL
-# + Linux system administration, bash scripting, cloud scale automation
-# + Built various types of web scraping applications using celery, tornado, twisted, etc.
-# + Knowledgeable in OOP programming concepts and design patterns
-# + Experience using and building REST/SOAP web service interfaces
-# + Extensive game development skills in HTML5 canvas and Adobe Flash
-# + Competent in marking up webpage layouts using HTML, CSS, JavaScript and jQuery
-# + Version control using Git, Mercurial and Subversion", skills: "subversion, mysql, javascript, git, actionscript, css, facebook api, php, apache, flash"}
-
-
-# {company_name: "Self Employed", title: "Full Stack Developer / DevOp", summary: "Python: Django, CherryPy, SQLAlchemy, boto, supervisor, celery, numpy, scipy
-# SysAdmin: nginx, Apache, Puppet, Chef, Bash, memcached, AWS
-# Database: PostgreSQL, MySQL, DynamoDB
-# VCS: Git, Mercurial", start_date: Date.new(2012, 10), end_date: Time.now}
-# {company_name: "Ralp", title: "Developer", summary: "PHP, Flash, Python, JavaScript, CSS, HTML, MySQL, Apache, Bash, Git, Rackspace", start_date: Date.new(2011, 4), end_date: Date.new(2012, 10)}
-# {company_name: "Oddcast", title: "Developer", summary: "Flash, JavaScript, HTML, CSS, PHP, Subversion", start_date: Date.new(2007, 7), end_date: Date.new(2011, 4)}
-
-
-# {degree: "Music", field_of_study: "Sound Design", school_name: "Berklee College of Music"}
-
-# {degree: "B.A.", field_of_study: "Computer Science, Web Development", school_name: "Florida State University"}
-
-
-
-
-
-
-
-
-
-# {headline: , industry: , summary: , skills: }
-
-# {degree: , field_of_study: , school_name: }
-
-# {company_name: , title: , summary: , start_date: , end_date: }
 
 ########## Make Fake profiles  ###########
 ########## 1
@@ -256,7 +152,7 @@ employee.linked_in.educations.create(
 git1 = employee.create_github_account({
   provider: 'github',
   uid: '838283',
-  username: 'sstephenson',
+  username: 'justinlala',
   oauth_token: 'fsljffew9fw923jfeljf4dos04'
   })
 
@@ -265,13 +161,13 @@ stack_info1 = get_stack_user_info('22224')
 stack_user1 = employee.create_stack_overflow_account(stack_info1)
 stack_user1.create_tags
 
-allRepos1 = repos_languages_data('howhai')
+allRepos1 = repos_languages_data('justinlala')
 allRepos1.each do |repo|
   git1.github_repos.create(repo)
 end
 
 # Create Dribbble account
-create_dribbble_account(employee, 'Skinnyships')
+create_dribbble_account(employee)
 
 
 ########### 2
@@ -324,7 +220,7 @@ employee2.linked_in.educations.create(
 git2 = employee2.create_github_account({
   provider: 'github',
   uid: '838283',
-  username: 'sstephenson',
+  username: 'fernvilla',
   oauth_token: 'fsljffew9fw923jfeljf4dos04'
   })
 
@@ -332,6 +228,13 @@ git2 = employee2.create_github_account({
 stack_info2 = get_stack_user_info('5445')
 stack_user2 = employee2.create_stack_overflow_account(stack_info2)
 stack_user2.create_tags
+
+allRepos2 = repos_languages_data('fernvilla')
+allRepos2.each do |repo|
+  git2.github_repos.create(repo)
+end
+
+create_dribbble_account(employee2)
 
 ########## 3
 
@@ -380,7 +283,7 @@ employee3.linked_in.educations.create(
 git3 = employee3.create_github_account({
   provider: 'github',
   uid: '838283',
-  username: 'sstephenson',
+  username: 'bryanrite',
   oauth_token: 'fsljffew9fw923jfeljf4dos04'
   })
 
@@ -388,3 +291,11 @@ git3 = employee3.create_github_account({
 stack_info3 = get_stack_user_info('35364')
 stack_user3 = employee3.create_stack_overflow_account(stack_info3)
 stack_user3.create_tags
+
+
+allRepos3 = repos_languages_data('bryanrite')
+allRepos3.each do |repo|
+  git3.github_repos.create(repo)
+end
+
+create_dribbble_account(employee3)

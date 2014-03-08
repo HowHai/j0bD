@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140305075204) do
+ActiveRecord::Schema.define(version: 20140308230623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,6 +145,31 @@ ActiveRecord::Schema.define(version: 20140305075204) do
 
   add_index "positions", ["linked_in_id"], name: "index_positions_on_linked_in_id", using: :btree
 
+  create_table "primary_stats", force: true do |t|
+    t.integer  "employee_id"
+    t.integer  "ruby"
+    t.integer  "css"
+    t.integer  "javascript"
+    t.integer  "coffeescript"
+    t.integer  "php"
+    t.integer  "java"
+    t.integer  "python"
+    t.integer  "c"
+    t.integer  "shell"
+    t.integer  "perl"
+    t.integer  "vimL"
+    t.integer  "scala"
+    t.integer  "go"
+    t.integer  "prolog"
+    t.integer  "clojure"
+    t.integer  "haskell"
+    t.integer  "lua"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "primary_stats", ["employee_id"], name: "index_primary_stats_on_employee_id", using: :btree
+
   create_table "stack_overflow_accounts", force: true do |t|
     t.integer  "employee_id"
     t.datetime "created_at"
@@ -168,5 +193,27 @@ ActiveRecord::Schema.define(version: 20140305075204) do
   end
 
   add_index "stack_tags", ["stack_overflow_account_id"], name: "index_stack_tags_on_stack_overflow_account_id", using: :btree
+
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "lastname"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
