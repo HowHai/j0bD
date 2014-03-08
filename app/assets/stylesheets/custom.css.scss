@@ -12,71 +12,124 @@ html {
 /* By James Calhoun */
 nav {
   position: fixed;
-  background-color: #178FE1;
-  text-align: right;
-  padding: 5px 5% 0 0;
-  /*opacity: 0.85;*/
+  background-color: white;
   width: 100%;
-  height: auto;
-  z-index: 900;
+  height: 40px;
+  z-index: 800;
+  opacity: 0.85;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -ms-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
-}
-
-nav:hover{
-  opacity: 1;
+  -webkit-box-shadow: 0 6px 4px -4px gray;
+     -moz-box-shadow: 0 6px 4px -4px gray;
+          box-shadow: 0 6px 4px -4px gray;
 }
 
 .nav-container{
+  height: 40px;
   width: 100%;
-  display: inline-block;
+  top:0;
+}
+
+/* NAV Login Status */
+.nav-login {
+  float: right;
+  padding: 5px 15px 0 0px;
 }
 
 /* Hamburger Button */
-#hambut{
+.ham-container{
   display: inline-block;
-  text-align: left;
+  padding: 5px 0 0 15px;
+  height: 40px;
+  width: 50px;
+}
+
+#hambut{
+  /*  ham button */
 }
 
 #hambut .bar{
   height: 4px;
   width: 20px;
-  background-color: white;
+  background-color: gray;
   margin: 4px 0 0 0;
 }
 
-#hamclose{
-  color: white;
-  font-size: 1.75em;
-  font-weight: bold;
+#hambut:hover{
+  .bar{background-color: #2e2e2e;}
+  
 }
-.ham-container{
-  padding: 15px;
-  text-align: left;
-  height: 50px;
-  width: 50px;
-  overflow: hidden;
+
+#hamclose{
+  padding: 0 0 15px 5px;
+  color: gray;
+  cursor: default;
+  font-size: 1.5em;
+  font-weight: bold;
+      -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+#hamclose:hover{
+  color:#2e2e2e;
 }
 
 /* MENU */
 #menu{
+  z-index: 900;
+  position: absolute;
+  top:0px;
   width: 0px;
-  height: 100px;
+  height: 100%;
   background-color: #2e2e2e;
   overflow: hidden;
+     -moz-box-shadow:    inset 0 0 15px #000000;
+   -webkit-box-shadow: inset 0 0 15px #000000;
+   box-shadow:         inset 0 0 15px #000000;
+}
+
+#menu .section {
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  padding-top: 15px;
+  color: white;
+  border-top: 1px solid gray; 
+}
+
+#menu .section:hover{
+  background-color: gray;
 }
 
 /* Search Bar */
 .search-container{
+  margin: 15px;
   position: relative;
   text-align: center;
 }
 
 .searchbar{
   margin: 0 auto;
+}
+
+/* Forms */
+input {
+  outline: 0px;
+  margin-top: 25px;
+  padding: 6px 12px;
+  border: 3px solid rgba (255,255,255,0.8);
+}
+
+input:focus {
+  outline: 0;
+}
+
+.btn {
+  margin-top: 0;
 }
 
 /* Signup Buttons */
@@ -86,7 +139,7 @@ nav:hover{
 
 /* YIELD CONTENT */
 #content {
-  padding-top: 50px;
+  padding-top: 70px;
 }
 
 /* MODAL STYLING */
@@ -143,7 +196,7 @@ nav:hover{
 }
 
 #taskr-intro-first{
-  height:900px;
+  height:450px;
 }
 
 #taskr-intro-second{
@@ -176,10 +229,11 @@ nav:hover{
 
 /*  PROFILE CARD IN CSS */
 .profile-card{
+  cursor: default;
   margin: 0 auto;
   display: block;
-  background-color: orange;
-  border: 4px solid white;
+  background-color: #f5f5f5;
+  border: 4px solid #f5f5f5;
   border-radius: 15px;
   height: 400px;
   width: 225px;
@@ -187,6 +241,18 @@ nav:hover{
     -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+    -webkit-box-shadow: 0 2px 2px 2px gray;
+     -moz-box-shadow: 0 2px 2px 2px gray;
+          box-shadow: 0 2px 2px 2px gray;
+}
+
+#front-page{
+  background-color: transparent;
+}
+
+#front-page .prof-panel {
+  background-color: white;
+  opacity: 0.85;
 }
 
 /* PROFILE PICTURE */
@@ -200,7 +266,7 @@ nav:hover{
   margin: -25px 0 0 -25px;
   width: 75px;
   height: 75px;
-  border: 8px solid green;
+  border: 8px solid orange;
   border-radius: 50%;
 }
 
@@ -266,3 +332,15 @@ nav:hover{
 .favbutton:active{
   background-color: #ce7046;
 }
+
+/* PAGE DOWN ARROW */
+/*.arrow {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  margin-left:-20px;
+  width: 40px;
+  height: 40px;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0yOTMuNzUxLDQ1NS44NjhjLTIwLjE4MSwyMC4xNzktNTMuMTY1LDE5LjkxMy03My42NzMtMC41OTVsMCwwYy0yMC41MDgtMjAuNTA4LTIwLjc3My01My40OTMtMC41OTQtNzMuNjcyICBsMTg5Ljk5OS0xOTBjMjAuMTc4LTIwLjE3OCw1My4xNjQtMTkuOTEzLDczLjY3MiwwLjU5NWwwLDBjMjAuNTA4LDIwLjUwOSwyMC43NzIsNTMuNDkyLDAuNTk1LDczLjY3MUwyOTMuNzUxLDQ1NS44Njh6Ii8+DQo8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMjIwLjI0OSw0NTUuODY4YzIwLjE4LDIwLjE3OSw1My4xNjQsMTkuOTEzLDczLjY3Mi0wLjU5NWwwLDBjMjAuNTA5LTIwLjUwOCwyMC43NzQtNTMuNDkzLDAuNTk2LTczLjY3MiAgbC0xOTAtMTkwYy0yMC4xNzgtMjAuMTc4LTUzLjE2NC0xOS45MTMtNzMuNjcxLDAuNTk1bDAsMGMtMjAuNTA4LDIwLjUwOS0yMC43NzIsNTMuNDkyLTAuNTk1LDczLjY3MUwyMjAuMjQ5LDQ1NS44Njh6Ii8+DQo8L3N2Zz4=);
+  background-size: contain;
+}*/

@@ -25,14 +25,16 @@ $(document).ready(function() {
 //  CUSTOM HAMBURGER MENU
   $("#hamclose").hide();
     $("#hambut").click(function(){
-        $('#content').animate({'margin-left' : '30%'});
-        $("#menu").show().animate({'width':'30%'})
+        $('#content').animate({'margin-left' : '50%'});
+        $(".ham-container").animate({'margin-left' : '50%'});
+        $("#menu").show().animate({'width':'50%'})
         $("#hambut").hide();
         $("#hamclose").show();
         });
 
   $("#hamclose").click(function(){
     $('#content').animate({'margin-left' : '0px'});
+    $(".ham-container").animate({'margin-left' : '0px'});
     $("#menu").show().animate({'width':'0px'})
     $("#hamclose").hide();
     $("#hambut").show();
@@ -53,7 +55,7 @@ $(document).ready(function() {
             var employee_id = $(this).attr('id');
             console.log(employee_id);
             //  POST TO FAVORITES LIST
-            $.post("/favorites", { employee: employee_id });
+            $.post("/favorites", { employee: employee_id }, null, 'script');
             $("#"+employee_id).animate({'margin-left':'-1000px'})
           },
 
