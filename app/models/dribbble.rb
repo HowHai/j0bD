@@ -1,6 +1,8 @@
 class Dribbble < ActiveRecord::Base
   belongs_to :employee
 
+  validates :username, presence: :true
+
   # Create Dribbble and save employee's Dribbble data
   def self.create_account(dribbble_username)
     drib = HTTParty.get("http://api.dribbble.com/players/#{dribbble_username}")

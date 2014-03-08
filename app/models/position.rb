@@ -1,6 +1,8 @@
 class Position < ActiveRecord::Base
   belongs_to :linked_in
 
+  validates :title, presence: :true
+
   def self.create_positions(linkedin, auth)
     positions = auth.extra.raw_info.positions.values[1]
     positions.each do |position|

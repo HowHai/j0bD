@@ -4,6 +4,8 @@ class LinkedIn < ActiveRecord::Base
   belongs_to :employee
   belongs_to :employer
 
+  validates :provider, presence: :true
+
   # Connect employee to their linkedin account and create new LinkedIn
   def self.connect_to_linkedin(auth, employee)
     user = employee.linked_in

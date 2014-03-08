@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe Dribbble do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let (:dribbble) {FactoryGirl.build(:dribbble, username: nil)}
+  subject { dribbble }
+  it "is invalid without a username" do
+    expect( dribbble ).to have(1).errors_on(:username)
+  end
 end
