@@ -17,11 +17,20 @@ class EmployersController < ApplicationController
 
   def show
     # List all employees for now
-    @employees = Employee.all
+      @employees = Employee.all
+      respond_to do |format|
+        format.json { render json: Employee.all }
+        format.html
+    end
   end
 
   def destroy
     session[:employer_id] = nil
     redirect_to root_path
   end
+
+  def favoritelist
+  end
+
+
 end

@@ -1,91 +1,26 @@
-Welcome <%= current_employer.name %>
-<!-- Employer info and favorites and others go here -->
+<div id="employee-profile">
 
-<!-- Search for potential candidates -->
-<%= form_tag "/", method: "post" do %>
-  <%= text_field_tag :search_candidate, params[:search_candidate], placeholder: "Search" %> <br>
-  <%= submit_tag "Search" %>
-<% end %>
-
-<!-- Employer's favorite list -->
-<h2>Your favorites</h2>
-<table>
-  <thead>
-    <th>Name</th>
-  </thead>
-
-  <% current_employer.favorite_employees.each do |favorite| %>
-    <tr>
-      <td><%= favorite.name %></td>
-    </tr>
-  <% end %>
-</table>
-
-<!-- Display Employees -->
-
-
-<% @employees.each do |employee| %>
-  <h2><%= employee.name %></h2>
-  <h3>General Info</h3>
-  <table>
-    <thead>
-      <th>Headline</th>
-      <th>Industry</th>
-      <th>Summary</th>
-      <th>Skills</th>
-      <th>Languages</th>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td><%= employee.linked_in.headline %></td>
-        <td><%= employee.linked_in.industry %></td>
-        <td><%= employee.linked_in.summary %></td>
-        <td><%= employee.linked_in.skills %></td>
-        <td><%= employee.linked_in.languages %></td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3>Positions</h3>
-  <table>
-    <thead>
-      <th>Company Name</th>
-      <th>Title</th>
-      <th>Summary</th>
-      <th>Start</th>
-      <th>End</th>
-    </thead>
-
-    <tbody>
-    <% employee.linked_in.positions.each do |position| %>
-      <tr>
-        <td><%= position.company_name %></td>
-        <td><%= position.title %></td>
-        <td><%= position.summary %></td>
-        <td><%= position.start_date %></td>
-        <td><%= position.end_date %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-
-  <h3>Education</h3>
-  <table>
-    <thead>
-      <th>Degree</th>
-      <th>Field of Study</th>
-      <th>School</th>
-    </thead>
-
-    <tbody>
-    <% employee.linked_in.educations.each do |education| %>
-      <tr>
-        <td><%= education.degree %></td>
-        <td><%= education.field_of_study %></td>
-        <td><%= education.school_name %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-<% end %>
+<!-- PROFILE CARD -->
+  <div class="profile-card" id="<%=(@employees[0].id)%>">
+    <div class="prof-pic"></div>
+  <div class="badge-container">
+      <%= @employees[0].name %>
+    <div class="prof-badges"></div>
+    <div class="prof-badges"></div>
+    <div class="prof-badges"></div>
+    <div class="prof-badges"></div>
+  </div>
+  <div class="text-container">
+    <div class="prof-text"></div>
+    <div class="prof-text"></div>
+    <div class="prof-text"></div>
+  </div>
+  <div class="panel-container">
+    <div class="prof-panel"><%= @employees[0].github_account %></div>
+    <div class="prof-panel"><%= @employees[0].stack_overflow_account %></div>
+    <div class="prof-panel"><%= @employees[0].linked_in %></div>
+    <div class="prof-panel"><%= @employees[0].dribbble %></div>
+  </div>
+  <div class="favbutton">Share</div>
+  </div>
+  </div>
