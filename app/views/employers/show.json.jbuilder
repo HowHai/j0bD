@@ -1,3 +1,3 @@
 json.employee do |json|
-  json.extract! @employees
+  json.extract! @employee
 end

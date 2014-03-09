@@ -5,6 +5,7 @@
     <div class="prof-pic"></div>
   <div class="badge-container">
       <%= @employees[0].name %>
+
     <div class="prof-badges"></div>
     <div class="prof-badges"></div>
     <div class="prof-badges"></div>
@@ -16,11 +17,11 @@
     <div class="prof-text"></div>
   </div>
   <div class="panel-container">
-    <div class="prof-panel"><%= @employees[0].github_account %></div>
-    <div class="prof-panel"><%= @employees[0].stack_overflow_account %></div>
-    <div class="prof-panel"><%= @employees[0].linked_in %></div>
-    <div class="prof-panel"><%= @employees[0].dribbble %></div>
+    <div class="prof-panel"><%= @employees[0].github_account.username %></div>
+    <div class="prof-panel"><%= @employees[0].stack_overflow_account.id %></div>
+    <div class="prof-panel"><%= @employees[0].linked_in.id %></div>
+    <div class="prof-panel"><%= @employees[0].dribbble.username %></div>
   </div>
   <div class="favbutton">Share</div>
   </div>
-  </div>
+</div>
