@@ -77,7 +77,7 @@ def get_stack_user_info(user_id)
 end
 
 # Generate random numbers
-def random_number(x)
+def random_number
   rand(700-1)
 end
 
@@ -283,7 +283,7 @@ employee3.linked_in.educations.create(
 git3 = employee3.create_github_account({
   provider: 'github',
   uid: '838283',
-  username: 'bryanrite',
+  username: 'elliehoshi',
   oauth_token: 'fsljffew9fw923jfeljf4dos04'
   })
 
@@ -293,7 +293,7 @@ stack_user3 = employee3.create_stack_overflow_account(stack_info3)
 stack_user3.create_tags
 
 
-allRepos3 = repos_languages_data('bryanrite')
+allRepos3 = repos_languages_data('elliehoshi')
 allRepos3.each do |repo|
   git3.github_repos.create(repo)
 end
