@@ -18,7 +18,7 @@ class StackTagsController < ApplicationController
 
       # Connect current employee to new stack account
       stack_user.update(employee_id: current_employee.id)
-
+      current_employee.skills_stats_modifier
       redirect_to employee_path(current_employee.id)
     end
   end

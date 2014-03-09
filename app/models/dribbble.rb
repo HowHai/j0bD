@@ -2,6 +2,7 @@ class Dribbble < ActiveRecord::Base
   belongs_to :employee
 
   # Create Dribbble and save employee's Dribbble data
+  # TODO: Create dribbble account using correct relationship method (employee.create_dribbble)
   def self.create_account(dribbble_username)
     drib = HTTParty.get("http://api.dribbble.com/players/#{dribbble_username}")
     drib_info = {

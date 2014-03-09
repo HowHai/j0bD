@@ -22,7 +22,7 @@ class Employee < ActiveRecord::Base
     # Modify stats using StackOverflow's top_tags_score
     top_stats = self.github_top_skills
 
-    if self.stack_overflow_account.nil?
+    if self.stack_overflow_account
       top_tags_score = self.calculate_top_tags_score
       # Hard code for now... out of time.
       ruby_tags = ['ruby', 'ruby-on-rails']
@@ -41,7 +41,7 @@ class Employee < ActiveRecord::Base
     end
 
     # Modify stats using Dribbble
-    if self.dribbble.nil?
+    if self.dribbble
       top_stats[:css] += self.calculate_dribbble_boost
     end
 
@@ -56,7 +56,7 @@ class Employee < ActiveRecord::Base
     # -break it down to skills found?
 
     # Simple LinkedIn solution for now...
-    if self.linked_in.nil?
+    if self.linked_in
       linked_in_boost = self.calculate_linkedin_boost
       top_stats.each do |key, value|
         top_stats[key] = (value * linked_in_boost).to_i

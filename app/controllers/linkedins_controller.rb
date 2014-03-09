@@ -1,3 +1,4 @@
+# TODO: Controller name is wrong, need to fix.
 class LinkedinsController < ApplicationController
   def create
     auth = env["omniauth.auth"]
@@ -8,6 +9,10 @@ class LinkedinsController < ApplicationController
       if @linkedin.persisted?
         Position.create_positions(@linkedin, auth)
         Education.create_educations(@linkedin, auth)
+
+        # Update employee's stats
+        current_employee.skills_stats_modifier
+
         redirect_to employee_path(current_employee.id)
       end
     else

@@ -6,6 +6,7 @@ class GithubAccount < ActiveRecord::Base
   validates_inclusion_of :provider, in:['github']
 
   # Has not been tested...
+  # Do I need this anymore?
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth["provider"]
