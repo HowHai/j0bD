@@ -167,8 +167,14 @@ allRepos1.each do |repo|
 end
 
 # Create Dribbble account
-create_dribbble_account(employee)
-
+employee.create_dribbble({
+  username:                 random_name,
+  shots_count:              49,
+  likes_count:              230,
+  likes_received_count:     899,
+  rebounds_count:           4,
+  rebounds_received_count:  2
+})
 
 ########### 2
 
@@ -179,7 +185,8 @@ employee2.create_linked_in(
 
 -Extensive experience with PHP, from legacy 1990's code to modern MVC frameworks. I have worked with the following frameworks : Symphony2, Zend, Laravel, CodeIgniter, CakePHP, Phalcon
 
--Databases - Deep understanding of database structure and architechture, with extensive experience with complex database creation, maintanence, and traversal. I have mainly worked with mysql, using raw queries, pdo, and orms.", skills: "PHP, Javascript, jquery, mysql, java, html, css, symfony, c, c++"}
+-Databases - Deep understanding of database structure and architechture, with extensive experience with complex database creation, maintanence, and traversal. I have mainly worked with mysql, using raw queries, pdo, and orms.", skills: "PHP, Javascript, jquery, mysql, java, html, css, symfony, c, c++", languages: "English"
+}
   )
 
 employee2.linked_in.positions.create(
@@ -234,7 +241,14 @@ allRepos2.each do |repo|
   git2.github_repos.create(repo)
 end
 
-create_dribbble_account(employee2)
+employee2.create_dribbble({
+  username:                 random_name,
+  shots_count:              9,
+  likes_count:              30,
+  likes_received_count:     99,
+  rebounds_count:           1,
+  rebounds_received_count:  2
+})
 
 ########## 3
 
@@ -249,7 +263,7 @@ employee3.create_linked_in(
 + Experience using and building REST/SOAP web service interfaces
 + Extensive game development skills in HTML5 canvas and Adobe Flash
 + Competent in marking up webpage layouts using HTML, CSS, JavaScript and jQuery
-+ Version control using Git, Mercurial and Subversion", skills: "subversion, mysql, javascript, git, actionscript, css, facebook api, php, apache, flash"}
++ Version control using Git, Mercurial and Subversion", skills: "subversion, mysql, javascript, git, actionscript, css, facebook api, php, apache, flash", languages: "English, Spanish, Chinese"}
   )
 
 employee3.linked_in.positions.create(
@@ -298,4 +312,11 @@ allRepos3.each do |repo|
   git3.github_repos.create(repo)
 end
 
-create_dribbble_account(employee3)
+employee3.create_dribbble({
+  username:                 random_name,
+  shots_count:              56,
+  likes_count:              130,
+  likes_received_count:     499,
+  rebounds_count:           11,
+  rebounds_received_count:  2
+})

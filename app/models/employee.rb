@@ -21,24 +21,29 @@ class Employee < ActiveRecord::Base
   def skills_stats_modifier
     # Modify stats using StackOverflow's top_tags_score
     top_stats = self.github_top_skills
-    top_tags_score = self.calculate_top_tags_score
-    # Hard code for now... out of time.
-    ruby_tags = ['ruby', 'ruby-on-rails']
-    javascript_tags = ['jquery', 'angularjs', 'nodejs']
-    css_tags = ['html', 'css3', 'layout', 'haml', 'markdown']
 
-    top_tags_score.each do |tag|
-      if ruby_tags.include?(tag[:tag_name])
-        top_stats[:ruby] += tag[:score]
-      elsif javascript_tags.include?(tag[:tag_name])
-        top_stats[:javascript] += tag[:score]
-      elsif css_tags.include?(tag[:tag_name])
-        top_stats[:css] += tag[:score]
+    if self.stack_overflow_account.nil?
+      top_tags_score = self.calculate_top_tags_score
+      # Hard code for now... out of time.
+      ruby_tags = ['ruby', 'ruby-on-rails']
+      javascript_tags = ['jquery', 'angularjs', 'nodejs']
+      css_tags = ['html', 'css3', 'layout', 'haml', 'markdown']
+
+      top_tags_score.each do |tag|
+        if ruby_tags.include?(tag[:tag_name])
+          top_stats[:ruby] += tag[:score]
+        elsif javascript_tags.include?(tag[:tag_name])
+          top_stats[:javascript] += tag[:score]
+        elsif css_tags.include?(tag[:tag_name])
+          top_stats[:css] += tag[:score]
+        end
       end
     end
 
     # Modify stats using Dribbble
-    top_stats[:css] += self.calculate_dribbble_boost
+    if self.dribbble.nil?
+      top_stats[:css] += self.calculate_dribbble_boost
+    end
 
     # Modify stats using LinkedIn
     # headline: boost overall by %
@@ -51,17 +56,19 @@ class Employee < ActiveRecord::Base
     # -break it down to skills found?
 
     # Simple LinkedIn solution for now...
-    linked_in_boost = self.calculate_linkedin_boost
-    top_stats.each do |key, value|
-      top_stats[key] = (value * linked_in_boost).to_i
+    if self.linked_in.nil?
+      linked_in_boost = self.calculate_linkedin_boost
+      top_stats.each do |key, value|
+        top_stats[key] = (value * linked_in_boost).to_i
+      end
     end
 
-    self.create_primary_stats(top_stats)
-  end
-
-  # Return a skill if it fits a category... move this osmewhere else later
-  def check_skill(skill)
-
+    # Create / update employee's primary stats after calculation
+    if self.primary_stats.nil?
+      self.create_primary_stats(top_stats)
+    else
+      self.primary_stats.update(top_stats)
+    end
   end
 
   # Get top skills from Github's data
@@ -295,10 +302,31 @@ class Employee < ActiveRecord::Base
     total_positions_score = titles_score + summary_score + experience_score.to_i + company_score
   end
 
-  # days_at_job = (position.end_date - position.start_date).to_i
-      # if title > 0
-      #   experience_score += days_at_job * 1
-      # elsif title > 0 && seniority > 0
-      #   experience_score += days_at_job * 2
-    # Return single number value for badges
+  # Total days at job as a developer
+  def developer_experience
+    titles = ['web designer', 'web designer', 'developer', 'web developer', 'Front End developer', 'Back End Developer', 'web architect']
+    seniority_boost = ['senior', 'lead', 'sr']
+
+    total_experience_score = 0
+
+    self.linked_in.positions.each do |position|
+      title = words_scanner(titles, position.title) * 10
+      seniority = words_scanner(seniority_boost, position.title) * 50
+      titles_score = (title + seniority)
+      experience_score = 0
+
+      # Calculate score for position's experience
+      days_at_job = (position.end_date - position.start_date).to_i
+      if title > 0
+        experience_score += days_at_job * 1
+      elsif title > 0 && seniority > 0
+        experience_score += days_at_job * 2
+      else
+        experience_score += days_at_job * 0
+      end
+
+      total_experience_score += titles_score + experience_score
+    end
+    total_experience_score
+  end
 end
