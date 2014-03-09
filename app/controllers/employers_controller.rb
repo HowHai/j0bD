@@ -1,6 +1,7 @@
 class EmployersController < ApplicationController
 
   def index
+    @employees = Employee.all
   end
 
   def create
@@ -18,10 +19,6 @@ class EmployersController < ApplicationController
   def show
     # List all employees for now
       @employees = Employee.all
-      respond_to do |format|
-        format.json { render json: Employee.all }
-        format.html
-    end
   end
 
   def destroy
