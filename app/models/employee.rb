@@ -56,7 +56,7 @@ class Employee < ActiveRecord::Base
       top_stats[key] = (value * linked_in_boost).to_i
     end
 
-    top_stats
+    self.create_primary_stats(top_stats)
   end
 
   # Return a skill if it fits a category... move this osmewhere else later
@@ -294,4 +294,11 @@ class Employee < ActiveRecord::Base
 
     total_positions_score = titles_score + summary_score + experience_score.to_i + company_score
   end
+
+  # days_at_job = (position.end_date - position.start_date).to_i
+      # if title > 0
+      #   experience_score += days_at_job * 1
+      # elsif title > 0 && seniority > 0
+      #   experience_score += days_at_job * 2
+    # Return single number value for badges
 end

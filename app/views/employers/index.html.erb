@@ -1,0 +1,39 @@
+<!-- some shit up here later -->
+
+<div id="employees-display"></div>
+
+<script id="employees-template" type="text/x-handlebars-template">
+
+<div id="employee-profile">
+
+<!-- PROFILE CARD -->
+  <div class="profile-card" id="{{employee.id}}">
+    <div class="prof-pic"></div>
+  <div class="badge-container">
+      {{ employee.name }}
+    <div class="prof-badges"></div>
+    <div class="prof-badges"></div>
+    <div class="prof-badges"></div>
+    <div class="prof-badges"></div>
+  </div>
+  <div class="text-container">
+    <div class="prof-text"></div>
+    <div class="prof-text"></div>
+    <div class="prof-text"></div>
+  </div>
+  <div class="panel-container">
+    <div class="prof-panel">{{employee.primary_stats.ruby}}</div>
+    <div class="prof-panel">{{employee.primary_stats.css}}</div>
+    <div class="prof-panel">{{employee.primary_stats.javascript}}</div>
+    <div class="prof-panel">{{employee.primary_stats.coffeescript}}</div>
+  </div>
+  <div class="favbutton">Share</div>
+  </div>
+  </div>
+
+
+</script>
+
+
+
+<script> $(function() { loadEmployeesPage(); }); </script>

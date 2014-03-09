@@ -1,6 +1,7 @@
 class EmployersController < ApplicationController
 
   def index
+    @employee = Employee.first
   end
 
   def create
