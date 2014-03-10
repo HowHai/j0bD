@@ -177,6 +177,9 @@ if true
     rebounds_received_count:  2
   })
 
+  # Modify stats
+  employee.skills_stats_modifier
+
   ########### 2
 
   employee2 = Employee.create(name: random_name)
@@ -251,6 +254,9 @@ if true
     rebounds_received_count:  2
   })
 
+  # Modify stats
+  employee.skills_stats_modifier
+
   ########## 3
 
   employee3 = Employee.create(name: random_name)
@@ -322,3 +328,6 @@ if true
     rebounds_received_count:  2
   })
 end
+
+# Modify stats
+employee.skills_stats_modifier

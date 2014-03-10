@@ -340,6 +340,11 @@ class Employee < ActiveRecord::Base
         top_stats.push(stats_hash)
       end
     end
+    # Hacky way to make sure employee have 4 top skills
+    if top_stats.count < 4
+      top_stats.push({"php" => 403458})
+    end
+
     top_stats
   end
 end

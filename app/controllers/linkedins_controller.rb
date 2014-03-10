@@ -20,7 +20,7 @@ class LinkedinsController < ApplicationController
       @employer = LinkedIn.connect_employer(auth)
       if @employer.persisted?
         session[:employer_id] = @employer.id
-        redirect_to @employer
+        redirect_to employers_path
       else
         # Do something to handle a failed log in / sign up for employer
       end
