@@ -185,16 +185,16 @@ if true
   employee2 = Employee.create(name: random_name)
 
   employee2.create_linked_in(
-  {headline: "Developer at Cloudy Hills", industry: "Internet", summary: "-Solid understanding of front-end development, including HTML5, CSS3, Javascript, JQuery, and Angular.js
+  {headline: "Developer at Cloudy Hills", industry: "Internet", summary: "-Solid understanding of front-end development, including HTML5, CSS3, and Angular.js
 
   -Extensive experience with PHP, from legacy 1990's code to modern MVC frameworks. I have worked with the following frameworks : Symphony2, Zend, Laravel, CodeIgniter, CakePHP, Phalcon
 
-  -Databases - Deep understanding of database structure and architechture, with extensive experience with complex database creation, maintanence, and traversal. I have mainly worked with mysql, using raw queries, pdo, and orms.", skills: "PHP, Javascript, jquery, mysql, java, html, css, symfony, c, c++", languages: "English"
+  -Databases - Deep understanding of database structure and architechture, with extensive experience with complex database creation, maintanence, and traversal. I have mainly worked with mysql, using raw queries, pdo, and orms.", skills: "PHP, mysql, java, html, css, symfony, c, c++", languages: "English"
   }
     )
 
   employee2.linked_in.positions.create(
-  {company_name: "Cloudy Hills", title: "Developer", summary: "PHP/MySql/Symfony2/Javascript/JQuery/Mobile/Ajax/Html5/css3/AngularJS
+  {company_name: "Cloudy Hills", title: "Online Marketing", summary: "PHP/MySql
 
   Development and consulting on wide variety of websites and applications, both previously existing and built from the ground up. Specializing in both backend and frontend development for larger scale applications.", start_date: Date.new(2013, 3), end_date: Time.now}
     )
@@ -204,34 +204,34 @@ if true
 
   Late 2012, Dave Seideman, founder of bookaband.com decided to do an overhaul of the 10+ year old website system that is currently in place.
 
-  This website was built from the ground up, based from the php symfony2 framework, and utilizes javascript, jquery, and several awesome external API's such as indextank and stripe.", start_date: Date.new(2012, 9), end_date: Date.new(2013, 6)}
+  This website was built from the ground up, based from the php symfony2 framework, and several awesome external API's such as indextank and stripe.", start_date: Date.new(2012, 9), end_date: Date.new(2013, 6)}
     )
 
-  employee2.linked_in.positions.create(
-  {company_name: "Prelude Interactive", title: "Developer", summary: "Prelude Interactive is a technology company in Austin, Texas, specializing in nonprofit and cause focused software, tools, and processes.
+  # employee2.linked_in.positions.create(
+  # {company_name: "Prelude Interactive", title: "Developer", summary: "Prelude Interactive is a technology company in Austin, Texas, specializing in nonprofit and cause focused software, tools, and processes.
 
-  Assigned a wide variety of projects including focuses on php script development, research, salesforce integration, and data analysis.", start_date: Date.new(2012, 3), end_date: Date.new(2013, 3)}
-    )
+  # Assigned a wide variety of projects including focuses on php script development, research, salesforce integration, and data analysis.", start_date: Date.new(2012, 3), end_date: Date.new(2013, 3)}
+  #   )
 
 
-  employee2.linked_in.positions.create(
-  {company_name: "Wisga.com", title: "Developer", summary: "Wisga is an exciting student project, created and founded by students at Rice University which helps college students gain leverage in finding internship or research opportunities through the experiences of other people they know or would have the opportunity to meet.
+  # employee2.linked_in.positions.create(
+  # {company_name: "Wisga.com", title: "Developer", summary: "Wisga is an exciting student project, created and founded by students at Rice University which helps college students gain leverage in finding internship or research opportunities through the experiences of other people they know or would have the opportunity to meet.
 
-  Being one of the initial developers, this was a life-changing experience where I was able to be immersed in every dimension of web development, and gain the skill sets necessary to begin my career as a developer.
+  # Being one of the initial developers, this was a life-changing experience where I was able to be immersed in every dimension of web development, and gain the skill sets necessary to begin my career as a developer.
 
-  Developed initial front end and back end functionality; PHP, Javascript, Jquery
-  Developed relational database schema: MySql", start_date: Date.new(2011, 3), end_date: Date.new(2012, 8)}
-    )
+  # Developed initial front end and back end functionality; PHP, Javascript, Jquery
+  # Developed relational database schema: MySql", start_date: Date.new(2011, 3), end_date: Date.new(2012, 8)}
+  #   )
 
   employee2.linked_in.educations.create(
-  {degree: "Bachelor of Arts", field_of_study: "Computer and Electrical Engineering", school_name: "University of Texas at Austin"}
+  {degree: "Bachelor of Arts", field_of_study: "Electrical", school_name: "University of Texas at Austin"}
     )
 
     # Github account
   git2 = employee2.create_github_account({
     provider: 'github',
     uid: '838283',
-    username: 'fernvilla',
+    username: 'kylechadha',
     oauth_token: 'fsljffew9fw923jfeljf4dos04'
     })
 
@@ -240,7 +240,7 @@ if true
   stack_user2 = employee2.create_stack_overflow_account(stack_info2)
   stack_user2.create_tags
 
-  allRepos2 = repos_languages_data('fernvilla')
+  allRepos2 = repos_languages_data('kylechadha')
   allRepos2.each do |repo|
     git2.github_repos.create(repo)
   end
@@ -321,9 +321,9 @@ if true
 
   employee3.create_dribbble({
     username:                 random_name,
-    shots_count:              56,
-    likes_count:              130,
-    likes_received_count:     499,
+    shots_count:              156,
+    likes_count:              430,
+    likes_received_count:     1499,
     rebounds_count:           11,
     rebounds_received_count:  2
   })

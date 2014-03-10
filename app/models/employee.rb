@@ -219,7 +219,7 @@ class Employee < ActiveRecord::Base
     seniority_boost = ['senior', 'lead', 'sr']
 
     headlines_score = words_scanner(headlines, linked_in.headline) * 100
-    seniority_score = words_scanner(seniority_boost, linked_in.headline) * 300
+    seniority_score = words_scanner(seniority_boost, linked_in.headline) * 150
 
     total_stats_boost = headlines_score + seniority_score
   end
@@ -239,7 +239,7 @@ class Employee < ActiveRecord::Base
   # LinkedIn score for skills
   def calculate_LI_skills
     top_skills = github_top_skills.keys.map(&:to_s)
-    words_scanner(top_skills, self.linked_in.skills) * 50
+    words_scanner(top_skills, self.linked_in.skills) * 20
   end
 
   # LinkedIn score for educations
@@ -259,7 +259,7 @@ class Employee < ActiveRecord::Base
     ba_score = words_scanner(bachelor_degree, my_degree)
     ma_score = words_scanner(master_degree, my_degree)
 
-    education_score = (ba_score * 100) + (ma_score * 500) + (field_score * 500)
+    education_score = (ba_score * 50) + (ma_score * 100) + (field_score * 100)
 
     # TODO: Bachelor and BA are credited if both included in degree.
   end
@@ -279,7 +279,7 @@ class Employee < ActiveRecord::Base
     self.linked_in.positions.each do |position|
       # Calculate score for position's title
       title = words_scanner(titles, position.title) * 10
-      seniority = words_scanner(seniority_boost, position.title) * 50
+      seniority = words_scanner(seniority_boost, position.title) * 30
       titles_score += (title + seniority)
 
       # Calculate score for position's summary
@@ -296,7 +296,7 @@ class Employee < ActiveRecord::Base
       end
 
       # Calculate score for position's company
-      company_score += words_scanner(companies, position.company_name) * 500
+      company_score += words_scanner(companies, position.company_name) * 100
     end
 
     total_positions_score = titles_score + summary_score + experience_score.to_i + company_score
@@ -311,7 +311,7 @@ class Employee < ActiveRecord::Base
 
     self.linked_in.positions.each do |position|
       title = words_scanner(titles, position.title) * 10
-      seniority = words_scanner(seniority_boost, position.title) * 50
+      seniority = words_scanner(seniority_boost, position.title) * 30
       titles_score = (title + seniority)
       experience_score = 0
 
@@ -320,9 +320,9 @@ class Employee < ActiveRecord::Base
       if title > 0
         experience_score += days_at_job * 1
       elsif title > 0 && seniority > 0
-        experience_score += days_at_job * 2
+        experience_score += days_at_job * 1
       else
-        experience_score += days_at_job * 0
+        experience_score += days_at_job * 0.25
       end
 
       total_experience_score += titles_score + experience_score
