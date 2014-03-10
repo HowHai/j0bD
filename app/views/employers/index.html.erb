@@ -1,7 +1,22 @@
-<meta charset="utf-8">
-<script src="http://d3js.org/d3.v3.min.js"></script>
-
 <style>
+
+body {
+font-family: helvetica;
+}
+
+p {
+  padding: 5px;
+}
+
+pre{
+  padding:10px;
+  border: 1px solid #dddddd;
+}
+
+button{
+  margin:10px;
+}
+
 .chart div {
   font: 10px sans-serif;
   background-color: orange;
@@ -11,6 +26,16 @@
   color: white;
 }
 </style>
+<!-- D3 Test -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+
+<p id="first_stats"><%= @top_stats[0].values[0] %></p>
+<p id="second_stats"><%= @top_stats[1].values[0] %></p>
+<p id="third_stats"><%= @top_stats[2].values[0] %></p>
+<p id="fourth_stats"><%= @top_stats[3].values[0] %></p>
+
+<!-- D3 Test -->
 
 <div id="employees-display"></div>
 

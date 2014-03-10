@@ -17,6 +17,8 @@ class GithubAccountsController < ApplicationController
         merged_repo = repo.merge(github_account_id: github_user.id)
         GithubRepo.create(merged_repo)
       end
+      # Update employee's stats
+      @employee.skills_stats_modifier
     else
       @employee = github_user.employee
       session[:user_id] = @employee.id

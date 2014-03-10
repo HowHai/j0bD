@@ -1,19 +1,12 @@
 class EmployersController < ApplicationController
 
   def index
-    @employee = Employee.first
+    @employee = Employee.last
+    @employees = Employee.all
+    @top_stats = @employee.get_top_stats
   end
 
   def create
-    # Probably should delete all this
-    # auth = env["omniauth.auth"]
-    # @employer = Employer.connect_to_linkedin(auth)
-    # if @employer.persisted?
-    #   session[:employer_id] = @employer.id
-    #   redirect_to @employer
-    # else
-    #   redirect_to root_path
-    # end
   end
 
   def show

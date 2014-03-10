@@ -1,6 +1,18 @@
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
 <div id="show-page">
   Hello <%= current_employee.github_account.username %>!
   <%= link_to "Log out", "/signout", method: :delete %> <br />
+
+
+
+  <!-- D3 test -->
+
+
+
+  <!-- D3 End -->
+
+
 
       <!-- PROFILE CARD -->
 <div class="profile-card">
@@ -55,8 +67,14 @@
 
 
   <h2>Employees Data</h2>
-  <h3>Top Github Skills</h3>
 <% if current_employee.github_account %>
+  <h3>Top Stats</h3>
+  Ruby: <%= current_employee.primary_stats.ruby %> <br>
+  Javascript: <%= current_employee.primary_stats.javascript %> <br>
+  CSS: <%= current_employee.primary_stats.css %> <br>
+  Coffeescript: <%= current_employee.primary_stats.coffeescript %>
+
+  <h3>Top Github Skills</h3>
   <% current_employee.github_top_skills.each do |key, value| %>
     <%= key %> : <%= value %> <br>
   <% end %>

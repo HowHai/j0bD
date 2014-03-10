@@ -1,9 +1,6 @@
 class GithubReposController < ApplicationController
 
   def create
-    # Create an employee and repos when user sign up / log in with Github
-    # @employee = Employee.find_by(git_account:)
-
   end
 
 
