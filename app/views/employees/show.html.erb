@@ -19,7 +19,7 @@
     <div class="prof-text"></div>
   </div>
   <div class="panel-container">
-    <div class="prof-panel">Github : connected</div>
+    <div class="prof-panel">Github : Connected</div>
     <div class="prof-panel">
   <!-- STACK OVER FLOW -->
     <% if current_employee.stack_overflow_account %>
@@ -51,7 +51,9 @@
         <% end %>
       <% end %>
     </div>
-    <div class="favbutton">Save</div>
+    <%= button_to "Save", employees_path, :method=> "skills_stats_modifier", class:"btn btn-primary btn-sm" %>
+    <%#= current_employee.stack_overflow_account && current_employee.linked_in && current_employee.dribbble ? (button_to "Save", employees_path, :method=> "skills_stats_modifier", class:"btn btn-primary btn-sm") : ("Link all accounts to save") %>
     </div>
   </div>
 </div>
+
