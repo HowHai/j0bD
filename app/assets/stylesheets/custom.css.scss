@@ -68,7 +68,6 @@ nav {
   color: gray;
   cursor: default;
   font-size: 1.5em;
-  font-weight: bold;
       -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
@@ -119,6 +118,7 @@ nav {
 /* Forms */
 input {
   outline: 0px;
+  width: 135px;
   margin-top: 25px;
   padding: 6px 12px;
   border: 3px solid rgba (255,255,255,0.8);
@@ -248,11 +248,27 @@ input:focus {
 
 #front-page{
   background-color: transparent;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
 }
 
 #front-page .prof-panel {
   background-color: white;
   opacity: 0.85;
+}
+
+.account-icons{
+  font-size: 3em;
+}
+
+.plus {
+  margin: 0 15px 125px 15px;
+}
+
+.account-text{
+  display: inline-block;
+  font-size: 18px;
 }
 
 /* PROFILE PICTURE */
@@ -280,8 +296,12 @@ input:focus {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  border-color: white;
+  border: 2px solid white;
   background-color: white;
+}
+
+#pb-nofill{
+  background-color: transparent;
 }
 
 .text-container{
@@ -294,6 +314,19 @@ input:focus {
   margin: 8px;
   border-radius: 25px;
   background-color: white;
+}
+
+#t60per{
+width: 120px;
+}
+#t75per{
+width: 150px;
+}
+#t25per{
+width: 50px;
+}
+#t55per{
+width: 110px;
 }
 
 /* PANELS */
