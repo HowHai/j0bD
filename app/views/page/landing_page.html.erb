@@ -16,8 +16,9 @@
 <div  class="section" id="taskr-intro-second" data-anchor="slide2">
   <div class="jumbotron">
     <div class="signup-form">
-      <h1>Coders + Startups</h1>
-      <p>Look no further.</p>
+      <h1>Find the coder you need at a glance.</h1>
+      <p>Coder profile cards tell you detailed information in an easy to read visual layout.</p>
+      <br />
 
 <!-- PROFILE CARD -->
   <div class="profile-card" id="front-page">
@@ -26,12 +27,13 @@
     <div class="prof-badges"></div>
     <div class="prof-badges"></div>
     <div class="prof-badges"></div>
-    <div class="prof-badges"></div>
+    <div class="prof-badges" id="pb-nofill"></div>
   </div>
   <div class="text-container">
-    <div class="prof-text"></div>
-    <div class="prof-text"></div>
-    <div class="prof-text"></div>
+    <div class="prof-text" id="t60per"></div>
+    <div class="prof-text" id="t75per"></div>
+    <div class="prof-text" id="t25per"></div>
+    <div class="prof-text" id="t55per"></div>
   </div>
   <div class="panel-container">
     <div class="prof-panel"></div>
@@ -42,10 +44,14 @@
   <div class="favbutton">Share</div>
   </div>
   </div>
+  <br />
+  <br />
+    <%= image_tag "arrow-left.png", :size => '50x50'%><p>Swipe Left to Favorite, Swipe Right to Deny.</p><%= image_tag "arrow-right.png", :size => '50x50'%>
       </div>
     </div>
     <div class="arrow"></div>
   </div>
+
 
 <!--SLIDE 3 -->
 <div  class="section" id="taskr-intro-third" data-anchor="slide3">
@@ -53,6 +59,20 @@
     <div class="signup-form">
       <h1>Fitting the bits.</h1>
       <p>Match need sets with skill sets.</p>
+      <br />
+      <%= image_tag "ruby.png", :size => '120x120'%>
+      <%= image_tag "html5.png", :size => '90x90'%>
+      <br />
+      <p>Filter candidates by what you are looking for:</p>
+      <br />
+      <%= image_tag "j0bd-profile.png", :size => '140x140'%>
+      <%= image_tag "j0bd-profile.png", :size => '140x140'%>
+      <%= image_tag "j0bd-profile.png", :size => '140x140'%>
+      <br />
+      <br />
+      <p>Review with colleagues</p>
+      <br />
+      <div class="favbutton">Share</div>
     </div>
   </div>
 </div>
@@ -63,7 +83,16 @@
   <div class="jumbotron">
     <div class="signup-form">
       <h1>Automated Profile Creation</h1>
-      <p>Find the people you need at a glance.</p>
+      <p>Coders link their accounts, we create the rest. An honest review based on actual work.</p>
+      <br />
+      <div class="account-icons">
+      <div class="account-text"><%= image_tag "github.png", :size => '120x120'%><br/>Github</div><%= image_tag "plus.png", :class => 'plus', :size => '30x30'%>
+        <div class="account-text"><%= image_tag "dribbble.png", :size => '110x110'%><br/>Dribbble</div><%= image_tag "plus.png", :class => 'plus', :size => '30x30'%>
+        <div class="account-text"><%= image_tag "linkedin.png", :size => '110x110'%><br/>Linkedin</div><%= image_tag "plus.png", :class => 'plus', :size => '30x30'%>
+        <div class="account-text"><%= image_tag "stackoverflow.png", :size => '100x100'%><br/>Stack Overflow</div>
+      </div>
+      <div class="equals">=</div>
+      <h1>Reliability</h1>
     </div>
   </div>
 </div>

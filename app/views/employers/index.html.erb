@@ -30,13 +30,6 @@ button{
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 
 
-<p id="first_stats"><%= @top_stats[0].values[0] %></p>
-<p id="second_stats"><%= @top_stats[1].values[0] %></p>
-<p id="third_stats"><%= @top_stats[2].values[0] %></p>
-<p id="fourth_stats"><%= @top_stats[3].values[0] %></p>
-
-<!-- D3 Test -->
-
 <div id="employees-display"></div>
 
 <script id="employees-template" type="text/x-handlebars-template">
@@ -54,23 +47,20 @@ button{
     <div class="prof-badges"></div>
   </div>
   <div class="text-container">
-    <div class="prof-text"></div>
-    <div class="prof-text"></div>
-    <div class="prof-text"></div>
+    <div class="prof-text" id="first_stats"><%= @top_stats[0].values[0] %></div>
+    <div class="prof-text" id="second_stats"><%= @top_stats[1].values[0] %></div>
+    <div class="prof-text" id="third_stats"><%= @top_stats[2].values[0] %></div>
+    <div class="prof-text" id="fourth_stats"><%= @top_stats[3].values[0] %></div>
   </div>
   <div class="panel-container">
-    <div class="prof-panel">{{employee.primary_stats.ruby}}</div>
-    <div class="prof-panel">{{employee.primary_stats.css}}</div>
-    <div class="prof-panel">{{employee.primary_stats.javascript}}</div>
-    <div class="prof-panel">{{employee.primary_stats.coffeescript}}</div>
+    <div class="prof-panel">{{employee.github_account.username}}</div>
+    <div class="prof-panel">{{employee.stack_overflow_account.reputation}}</div>
+    <div class="prof-panel">{{employee.linked_in.skills}}</div>
+    <div class="prof-panel">{{employee.dribbble.likes_received_count}} + {{employee.dribbble.shots_count}}</div>
   </div>
   <div class="favbutton">Share</div>
   </div>
   </div>
-
-
 </script>
-
-<div class="chart"></div>
 
 <script> $(function() { loadEmployeesPage(); }); </script>
