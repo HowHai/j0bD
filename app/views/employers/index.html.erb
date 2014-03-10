@@ -1,4 +1,31 @@
-<!-- some shit up here later -->
+<!-- D3 Test -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<style>
+body {
+font-family: helvetica;
+}
+
+p {
+  padding: 5px;
+}
+
+pre{
+  padding:10px;
+  border: 1px solid #dddddd;
+}
+
+button{
+  margin:10px;
+}
+</style>
+
+<p id="first_stats"><%= @top_stats[0].values[0] %></p>
+<p id="second_stats"><%= @top_stats[1].values[0] %></p>
+<p id="third_stats"><%= @top_stats[2].values[0] %></p>
+<p id="fourth_stats"><%= @top_stats[3].values[0] %></p>
+
+<!-- D3 Test -->
 
 <div id="employees-display"></div>
 
@@ -37,3 +64,6 @@
 
 
 <script> $(function() { loadEmployeesPage(); }); </script>
+
+<script>
+</script>

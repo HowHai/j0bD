@@ -2,6 +2,7 @@ class EmployersController < ApplicationController
 
   def index
     @employee = Employee.first
+    @top_stats = @employee.get_top_stats
   end
 
   def create
