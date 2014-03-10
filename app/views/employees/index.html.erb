@@ -1,1 +1,195 @@
-Hello Employers!
+
+  <h2>Employees Data</h2>
+<% if current_employee.github_account %>
+  <h3>Top Stats</h3>
+  Ruby: <%= current_employee.primary_stats.ruby %> <br>
+  Javascript: <%= current_employee.primary_stats.javascript %> <br>
+  CSS: <%= current_employee.primary_stats.css %> <br>
+  Coffeescript: <%= current_employee.primary_stats.coffeescript %>
+
+  <h3>Top Github Skills</h3>
+  <% current_employee.github_top_skills.each do |key, value| %>
+    <%= key %> : <%= value %> <br>
+  <% end %>
+
+  <h3></h3>
+
+
+  <h3>Calculated SO Top Tags Score</h3>
+  <table>
+    <thead>
+      <th>Tag</th>
+      <th>Score</th>
+    </thead>
+
+  <% if current_employee.stack_overflow_account %>
+  <% current_employee.calculate_top_tags_score.each do |tag| %>
+    <tr>
+      <td><%= tag[:tag_name] %></td>
+      <td><%= tag[:score] %></td>
+    </tr>
+  <% end %>
+  <% end %>
+  </table>
+  <h3>Related SO Stats</h3>
+
+  <table>
+    <thead>
+      <th>Tag</th>
+      <th>Answer Count</th>
+      <th>Answer Score</th>
+      <th>Question Count</th>
+      <th>Question Score</th>
+    </thead>
+  <% if current_employee.stack_overflow_account %>
+  <% current_employee.top_tags.each do |tag| %>
+    <tr>
+      <td><%= tag[:tag_name] %></td>
+      <td><%= tag[:answer_count] %></td>
+      <td><%= tag[:answer_score] %></td>
+      <td><%= tag[:question_count] %></td>
+      <td><%= tag[:question_score] %></td>
+    </tr>
+  <% end %>
+  <% end %>
+<% end %>
+  </table>
+
+  <!-- Show all Github repositories -->
+  <%= @employee.github_account.username %>'s Repositories
+  <table>
+    <thead>
+      <th>Name</th>
+      <th>Ruby</th>
+      <th>JavaScript</th>
+      <th>CoffeeScript</th>
+      <th>CSS</th>
+      <th>PHP</th>
+      <th>Created_at</th>
+      <th>Updated_at</th>
+    </thead>
+
+    <% @employee.github_account.github_repos.each do |repo| %>
+      <tr>
+        <td><%= repo.name %></td>
+        <td><%= repo.Ruby %></td>
+        <td><%= repo.JavaScript %></td>
+        <td><%= repo.CoffeeScript %></td>
+        <td><%= repo.CSS %></td>
+        <td><%= repo.PHP %></td>
+        <td><%= repo.created_at.to_formatted_s(:long) %></td>
+        <td><%= repo.updated_at.to_formatted_s(:long) %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <!-- Show employee's stackoverflow data if they have an account connected -->
+  <% if current_employee.stack_overflow_account %>
+  <h2>StackOverflow Data</h2>
+    <h2>ID: <%= current_employee.stack_overflow_account.id %> | Rep: <%=current_employee.stack_overflow_account.reputation %> | Badges: <%= current_employee.stack_overflow_account.badge_counts %></h2>
+    <table>
+      <thead>
+        <th>Tag Name</th>
+        <th>Answer Count</th>
+        <th>Answer Score</th>
+        <th>Question Count</th>
+        <th>Question Score</th>
+      </thead>
+
+      <% current_employee.stack_overflow_account.stack_tags.each do |tag| %>
+        <tr>
+          <td><%= tag.top_tag_name %></td>
+          <td><%= tag.answer_count %></td>
+          <td><%= tag.answer_score %></td>
+          <td><%= tag.question_count %></td>
+          <td><%= tag.question_score %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+
+
+  <!-- Show employee's Dribbble data if they have an account connected -->
+  <% if current_employee.dribbble %>
+  <h2>Dribbble Data</h2>
+    <table>
+      <thead>
+        <th>Shots Count</th>
+        <th>Likes Count</th>
+        <th>Likes Received Count</th>
+        <th>Rebounds Count</th>
+        <th>Rebounds Received Count</th>
+      </thead>
+
+        <tr>
+          <td><%= current_employee.dribbble.shots_count %></td>
+          <td><%= current_employee.dribbble.likes_count %></td>
+          <td><%= current_employee.dribbble.likes_received_count %></td>
+          <td><%= current_employee.dribbble.rebounds_count %></td>
+          <td><%= current_employee.dribbble.rebounds_received_count %></td>
+        </tr>
+    </table>
+  <% end %>
+
+  <% if current_employee.linked_in %>
+    <h2>LinkedIn Data</h2>
+    <h2>General Information</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Headline</th>
+        <th>Industry</th>
+        <th>Interests</th>
+        <th>Spoken Languages</th>
+        <th>Skills</th>
+      </thead>
+
+      <tr>
+        <td><%= current_employee.linked_in.first_name %></td>
+        <td><%= current_employee.linked_in.headline %></td>
+        <td><%= current_employee.linked_in.industry %></td>
+        <td><%= current_employee.linked_in.interests %></td>
+        <td><%= current_employee.linked_in.languages %></td>
+        <td><%= current_employee.linked_in.skills %></td>
+      </tr>
+    </table>
+
+    <h2>Positions</h2>
+    <table>
+      <thead>
+        <th>Title</th>
+        <th>Summary</th>
+        <th>Is Current</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+      </thead>
+
+    <% current_employee.linked_in.positions.each do |position| %>
+      <tr>
+        <td><%= position.title %></td>
+        <td><%= position.summary %></td>
+        <td><%= position.is_current %></td>
+        <td><%= position.start_date %></td>
+        <td><%= position.end_date %></td>
+      </tr>
+    <% end %>
+    </table>
+
+    <h2>Education</h2>
+    <table>
+      <thead>
+        <th>Degree</th>
+        <th>Field of Study</th>
+        <th>School Name</th>
+      </thead>
+
+    <% current_employee.linked_in.educations.each do |education| %>
+      <tr>
+        <td><%= education.degree %></td>
+        <td><%= education.field_of_study %></td>
+        <td><%= education.school_name %></td>
+      </tr>
+    <% end %>
+    </table>
+  <% end %>
+</div>
