@@ -329,4 +329,17 @@ class Employee < ActiveRecord::Base
     end
     total_experience_score
   end
+
+  # Employee's top 4 stats
+  def get_top_stats
+    top_stats = []
+    self.primary_stats.as_json.select do |key,value|
+      if value.is_a?(Integer) && value > 1000
+        stats_hash = {}
+        stats_hash[key] = value
+        top_stats.push(stats_hash)
+      end
+    end
+    top_stats
+  end
 end
