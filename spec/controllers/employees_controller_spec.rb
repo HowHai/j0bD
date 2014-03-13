@@ -6,14 +6,23 @@ describe EmployeesController do
     controller.stub(:current_employee).and_return(current_employee) 
   end
 
-  describe "GET 'show'" do
+describe "GET 'index'" do
     it "returns http success" do
-      Employee.stub(:find).with(current_employee.id).and_return("yourMama")
-      get 'show', {id: 18}
-      expect(assigns(:employee)).to eq "yourMama"
+      Employee.should_receive(:all).and_return("An array of Employees")
+      get 'index'
+      expect(assigns(:employees)).to eq("An array of Employees")
       response.should be_success
     end
   end
+
+  # describe "GET 'show'" do
+  #   it "returns http success" do
+  #     Employee.should_receive(:find).with(current_employee.id).and_return("yourMama")
+  #     get 'show', {id: 18}
+  #     expect(assigns(:employee)).to eq "yourMama"
+  #     response.should be_success
+  #   end
+  # end
 
   describe "GET 'new'" do
     it "returns http success" do

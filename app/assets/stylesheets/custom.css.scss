@@ -237,7 +237,7 @@ input:focus {
   border-radius: 15px;
   height: 400px;
   width: 225px;
-  color: white;
+  color: black;
     -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
@@ -271,6 +271,7 @@ input:focus {
 }
 
 .badge-container{
+  color: black;
   margin: 15px 20px 0 0;
   text-align: right;
 }

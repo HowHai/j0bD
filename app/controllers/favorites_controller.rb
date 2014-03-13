@@ -1,4 +1,9 @@
 class FavoritesController < ApplicationController
+
+  def index
+    @favorites = Favorite.all
+  end
+
   def create
     current_employer.add_favorite(params[:employee])
     @employee = Employee.find(49)
